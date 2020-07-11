@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientsTable extends Migration
+class Clients extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->timestamps();
             $table->string('second_name');
             $table->string('first_name');
@@ -22,8 +22,9 @@ class CreateClientsTable extends Migration
             $table->string('contacts');
             $table->text('discription');
             $table->string('company_name');
-            /* $table->integer('deal_id')->unsigned();
-            $table->foreign('deal_id')->references('id')->on('deal'); */
+           
+            $table->bigInteger('deal_id')->unsigned();
+            $table->foreign('deal_id')->references('id')->on('deals')->onDelete('cascade');
         });
     }
 

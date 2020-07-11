@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentFilesTable extends Migration
+class CommentFiles extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateCommentFilesTable extends Migration
     public function up()
     {
         Schema::create('comment_files', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->string('filename');
             $table->string('file_path');
             $table->bigInteger('comment_id');
