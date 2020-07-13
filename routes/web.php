@@ -26,3 +26,5 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::get('/home/clients', 'ClientController@index')->name('home');
