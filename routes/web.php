@@ -27,12 +27,8 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/clients', 'ClientController@index')->name('home');
 
-Auth::routes();
+Route::get('/deal', 'DealController@index')->name('deal');
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
