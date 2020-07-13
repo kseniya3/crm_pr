@@ -33,6 +33,22 @@
             @endif
         </div>
 
+        {{-- Role field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="role" class="form-control {{ $errors->has('role') ? 'is-invalid' : '' }}"
+                   value="{{ old('role') }}">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('role'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('role') }}</strong>
+                </div>
+            @endif
+        </div>
+
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
