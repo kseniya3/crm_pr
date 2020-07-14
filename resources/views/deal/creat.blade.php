@@ -1,8 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-@if($item->exists)
-    <form method="POST" action="{{route('deals.create') }}"></form>
+
 
 
 <div class="box box-primary">
