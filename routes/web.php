@@ -27,8 +27,11 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-<<<<<<< HEAD
 Route::get('/home/clients', 'ClientController@index')->name('home');
-=======
-Route::get('/deal', 'DealController@index')->name('deal');
->>>>>>> 5e77a89be5d5daaf9b210801bdb9c403062f73a5
+
+
+Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
+    Route::get('/', 'DealController@index')->name('index');
+    Route::get('/create', 'DealController@create')->name('create');
+    Route::post('/store', 'DealController@store')->name('store');
+});
