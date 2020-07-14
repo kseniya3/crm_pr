@@ -27,8 +27,12 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-<<<<<<< HEAD
-Route::get('/home/clients', 'ClientController@index')->name('home');
-=======
+//Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
+Route::get('/home/clients', function(){
+    return view('client_temp');
+})->name('client-add-form');
+/* Route::post('/home/clients', function(){
+    return "Okey";
+}); */
+Route::post('/home/clients', 'ClientController@create')->name('client-add-form');
 Route::get('/deal', 'DealController@index')->name('deal');
->>>>>>> 5e77a89be5d5daaf9b210801bdb9c403062f73a5
