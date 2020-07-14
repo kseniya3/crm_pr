@@ -34,4 +34,4 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/', 'DealController@index')->name('index');
     Route::get('/create', 'DealController@create')->name('create');
     Route::post('/store', 'DealController@store')->name('store');
-});
+}); 
