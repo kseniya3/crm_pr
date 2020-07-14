@@ -35,3 +35,12 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/create', 'DealController@create')->name('create');
     Route::post('/store', 'DealController@store')->name('store');
 }); 
+//Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
+Route::get('/home/clients', function(){
+    return view('client_temp');
+})->name('client-add-form');
+/* Route::post('/home/clients', function(){
+    return "Okey";
+}); */
+Route::post('/home/clients', 'ClientController@create')->name('client-add-form');
+Route::get('/deal', 'DealController@index')->name('deal');

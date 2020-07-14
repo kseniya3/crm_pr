@@ -14,6 +14,8 @@
                         </div>
                     @endif
                     
+                    
+                    <a href="{{route('deals.index')}}">Deal</a>
 
                     {{ __('You are logged in!') }}
                 </div>

@@ -17,8 +17,8 @@ class CreateDealsTable extends Migration
             $table->id();
             $table->string('deal_name');
             $table->dateTime('open_date');
-            $table->dateTime('close_date');
-            $table->string('deal_descrip');
+            $table->dateTime('close_date')->nullable();
+            $table->string('deal_descrip')->nullable();
             $table->dateTime('deadline');
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('user_id')->unsigned();
