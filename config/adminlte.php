@@ -250,14 +250,27 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'Clients',
-            'url'  => 'home/clients',
+            'text' => 'Profile',
+            'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'header' => 'Tables',
+        ],
+        [
+            'text' => 'Clients',
+            'url' => 'home/clients',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Deals',
+            'url' => 'admin/deals',
+            'icon' => 'fa fa-book',
         ],
         [
             'text'    => 'multilevel',

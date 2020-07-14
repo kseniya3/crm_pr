@@ -33,21 +33,7 @@
             @endif
         </div>
 
-        {{-- Role field --}}
-        <div class="input-group mb-3">
-            <input type="text" name="role" class="form-control {{ $errors->has('role') ? 'is-invalid' : '' }}"
-                   value="{{ old('role') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @if($errors->has('role'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('role') }}</strong>
-                </div>
-            @endif
-        </div>
+
 
         {{-- Email field --}}
         <div class="input-group mb-3">
@@ -95,6 +81,25 @@
             @if($errors->has('password_confirmation'))
                 <div class="invalid-feedback">
                     <strong>{{ $errors->first('password_confirmation') }}</strong>
+                </div>
+            @endif
+        </div>
+
+        {{-- Role field --}}
+        <div class="input-group mb-3">
+            <!-- <p><input type="radio" name="role" class="fa fa-home{{ $errors->has('role') ? 'is-invalid' : '' }}"
+                value="admin" checked>Administrator</p>
+            <p><input type="radio" name="role" class="fa fa-home {{ $errors->has('role') ? 'is-invalid' : '' }}"
+                value="manager">Manager</p> -->
+
+                <select name="role" class = "form-control">
+                    <option value="admin" class=" {{ $errors->has('role') ? 'is-invalid' : '' }}">Administrator</option>
+                    <option value="manager" class = " {{ $errors->has('role') ? 'is-invalid' : '' }}">Manager</option>
+                </select>
+            
+            @if($errors->has('role'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('role') }}</strong>
                 </div>
             @endif
         </div>
