@@ -18,7 +18,7 @@
         </div>
 
     @endif --}}
-    <form action="{{route('client-add-form')}}" method="post">
+    <form action="{{route('clients.create_client')}}" method="post">
         @csrf
         <div class="form-group">
             @if (count($errors) > 0)
@@ -40,7 +40,7 @@
             <input type="text" name="contacts_telephone" id="contacts_telephone"class="form-control">
             <label for="contacts_email">contact_email</label>
             <input type="text" name="contacts_email" id="contacts_email"class="form-control">
-            <label for="description">discription</label>
+            <label for="description">description</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
             <label for="company_name">company name</label>
             <input type="text" name="company_name" id="company_name"class="form-control">

@@ -241,6 +241,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
@@ -264,13 +265,18 @@ return [
         ],
         [
             'text' => 'Clients',
-            'url' => 'home/clients',
+            'url' => '/clients',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'Deals',
             'url' => 'admin/deals',
             'icon' => 'fa fa-book',
+        ],
+        [
+            'text' => 'Страница пользователей',
+            'url'  => 'home/users',
+            'icon'  => 'fa fa-book',
         ],
         [
             'text'    => 'multilevel',

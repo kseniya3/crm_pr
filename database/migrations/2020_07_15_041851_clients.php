@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientsTable extends Migration
+class Clients extends Migration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('middle_name');
             $table->string('contacts_telephone');
             $table->string('contacts_email');
-            $table->text('description');
+            $table->text('description')->nullable();;
             $table->string('company_name');
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('user_id')->unsigned();
