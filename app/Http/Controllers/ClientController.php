@@ -14,8 +14,8 @@ class ClientController extends Controller
             'second_name' => ['required','string','min:2','max:30'],
             'first_name' => ['required','string','max:30'],
             'middle_name' => ['required','string','max:30'],
-            'contacts_telephone' => ['required','string','max:30'],
-            'contacts_email' => ['required','string','max:30'],
+            'contacts_telephone' => ['unique:clients','required','string','max:30'],
+            'contacts_email' => ['unique:clients','required','string','max:30'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
         ]);
