@@ -2,11 +2,12 @@
 @extends('adminlte::page')
 
 @section('content')
+
 <div class="row">
     <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Condensed Full Width Table</h3>
-        </div>
+        <section style ="margin:0; font-size:24px; line-height:5px;">
+            <h1>Deals table</h1>
+        </section>
         <!-- /.box-header -->
         <div class="box-body no-padding">
             <table class="table table-condensed">
@@ -39,8 +40,8 @@
             </table>
         </div>
         <div class="box-footer">
-            <button type="submit" href="{{route('deals.create')}}" class="btn btn-primary">Add</button>
-            <a href="{{route('deals.create')}}">Deal</a>
+            <a href="{{route('deals.create')}}"><button type="submit" class="btn btn-primary">Add deal</button></a>
+            <!-- <a href="{{route('deals.create')}}">Deal</a> -->
         </div>
         <!-- /.box-body -->
     </div>
