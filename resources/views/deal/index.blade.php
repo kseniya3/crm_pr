@@ -1,49 +1,53 @@
-
 @extends('adminlte::page')
 
 @section('content')
-<div class="row">
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Condensed Full Width Table</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body no-padding">
-            <table class="table table-condensed">
-                <tbody>
-                    <tr>
-                        <th style="width: 10px">#</th>
-                        <th>Task</th>
-                        <th>Progress</th>
-                        <th style="width: 40px">Label</th>
-                    </tr>
-                    @foreach($items as $item)
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->deal_name }}</td>
-                        <td>{{ $item->open_date }}</td>
-                        <td>{{ $item->close_date }}</td>
-                        <td>{{ $item->deal_descrip }}</td>
-                        <td>{{ $item->deadline }}</td>
-                        <td>{{ $item->user_id }}</td>
-                        <td>{{ $item->status }}</td>
-                        <td>
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                            </div>
-                        </td>
-                        <td><span class="badge bg-red">55%</span></td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div class="box-footer">
-            <button type="submit" href="{{route('deals.create')}}" class="btn btn-primary">Add</button>
-            <a href="{{route('deals.create')}}">Deal</a>
-        </div>
-        <!-- /.box-body -->
-    </div>
-</div>
-@endsection
+<a href="{{route('deals.create')}}" class="btn btn-success">Добавить сделку</a>
 
+ @if(session()->get('success'))
+    <div class="alert alert-success mt-3">
+      {{ session()->get('success') }}  
+    </div>
+@endif
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">deal_name</th>
+      <th scope="col">open_date</th>
+      <th scope="col">close_date</th>
+      <th scope="col">deal_descrip</th>
+      <th scope="col">deadline</th>
+      <th scope="col">user_id</th>
+      <th scope="col">status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+   @foreach($items as $item)
+    <tr>
+        <td scope="row">{{ $item->id }}</td>
+        <td>{{ $item->deal_name }}</td>
+        <td>{{ $item->open_date }}</td>
+        <td>{{ $item->close_date }}</td>
+        <td>{{ $item->deal_descrip }}</td>
+        <td>{{ $item->deadline }}</td>
+        <td>{{ $item->user_id }}</td>
+        <td>{{ $item->status }}</td>
+      <td class="table-buttons">
+        <a href="{{ route('deals.edit', $item->id) }}"  class="btn btn-primary">
+          <i class="fa fa-eye"></i>
+        </a>
+        <form method="POST" action="{{ route('deals.destroy', $item->id) }}">
+         @csrf
+         @method('DELETE')
+            <button type="submit" class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+        </form>
+      </td>
+    </tr>
+  @endforeach
+  </tbody>
+</table>
+@endsection
