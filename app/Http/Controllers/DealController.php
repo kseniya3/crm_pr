@@ -74,7 +74,7 @@ class DealController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -83,9 +83,10 @@ class DealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Request $request, $id)
+    { 
+        $deal = Deal::find($id);
+        return view('deal.edit', compact('deal')); 
     }
 
     /**
@@ -97,7 +98,26 @@ class DealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'deal_name' => 'required',
+            'open_date' => 'required',
+            'close_date' => '',
+            'deal_descrip' => 'required|max:255',
+            'deadline' => 'required',
+            'status' => 'required|max:255'
+        ]);
+
+        $deal = Deal::find($id);
+        $deal->deal_name = $request->get('deal_name');
+        $deal->open_date = $request->get('open_date');
+        $deal->close_date = $request->get('close_date');
+        $deal->deal_descrip = $request->get('deal_descrip');
+        $deal->deadline = $request->get('deadline');
+        //$contact->first_name = $request->user()->id;
+        $deal->status = $request->get('status');
+        $deal->save();
+
+        return redirect('/deals')->with('success', 'Contact updated!');
     }
 
     /**

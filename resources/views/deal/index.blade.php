@@ -1,7 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Все посты')
-
 @section('content')
 <a href="{{route('deals.create')}}" class="btn btn-success">Добавить сделку</a>
 
@@ -37,11 +35,8 @@
         <td>{{ $item->user_id }}</td>
         <td>{{ $item->status }}</td>
       <td class="table-buttons">
-        <a class="btn btn-success">
+        <a href="{{ route('deals.edit', $item->id) }}"  class="btn btn-primary">
           <i class="fa fa-eye"></i>
-        </a>
-        <a class="btn btn-primary">
-          <i class="fa fa-pencil" ></i>
         </a>
         <form method="POST" action="{{ route('deals.destroy', $item->id) }}">
          @csrf

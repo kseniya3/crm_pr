@@ -34,8 +34,10 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/', 'DealController@index')->name('index');
     Route::get('/create', 'DealController@create')->name('create');
     Route::post('/store', 'DealController@store')->name('store');
+    Route::get('/{id}/edit', 'DealController@edit')->name('edit');
+    Route::put('/{id}','DealController@update')->name('update');
+    Route::patch('/{id}','DealController@update');
     Route::delete('/{id}', 'DealController@destroy')->name('destroy');
-    
 }); 
 
 //Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
