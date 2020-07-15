@@ -27,8 +27,8 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-<<<<<<< Updated upstream
-Route::get('/home/clients', 'ClientController@index')->name('home');
+
+
 
 
 Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
@@ -37,12 +37,20 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::post('/store', 'DealController@store')->name('store');
 }); 
 //Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
-=======
+
 // Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
->>>>>>> Stashed changes
+Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
+    Route::post('/create', 'ClientController@create')->name('create_client');
+    Route::get('/show', 'ClientController@Show')->name('show_clients');
+    Route::get('/delete/{id}','ClientController@Del')->name('delete_client');
+    Route::get('/update/{id}', 'ClientController@updateClientStr')->name('update_client_str');
+    Route::post('/update/{id}','ClientController@updateClient')->name('update_client');
+
+    
+});
 Route::get('/home/clients', function(){
-    return view('client_temp');
+    return view('Client\client_temp');
 })->name('client-add-form');
 
-Route::post('/home/clients', 'ClientController@create')->name('client-add-form');
+
 Route::get('/deal', 'DealController@index')->name('deal');
