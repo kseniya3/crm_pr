@@ -241,7 +241,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        
+
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
@@ -270,7 +270,7 @@ return [
         ],
         [
             'text' => 'Deals',
-            'url' => 'admin/deals',
+            'url' => '/deals',
             'icon' => 'fa fa-book',
         ],
         [

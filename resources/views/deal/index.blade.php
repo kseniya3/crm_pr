@@ -5,7 +5,7 @@
 
  @if(session()->get('success'))
     <div class="alert alert-success mt-3">
-      {{ session()->get('success') }}  
+      {{ session()->get('success') }}
     </div>
 @endif
 
@@ -18,13 +18,16 @@
       <th scope="col">close_date</th>
       <th scope="col">deal_descrip</th>
       <th scope="col">deadline</th>
-      <th scope="col">user_id</th>
+      <th scope="col">manager</th>
+
       <th scope="col">status</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
    @foreach($items as $item)
+       @foreach($users as $user)
+
     <tr>
         <td scope="row">{{ $item->id }}</td>
         <td>{{ $item->deal_name }}</td>
@@ -32,7 +35,9 @@
         <td>{{ $item->close_date }}</td>
         <td>{{ $item->deal_descrip }}</td>
         <td>{{ $item->deadline }}</td>
-        <td>{{ $item->user_id }}</td>
+        @if($item->user_id === $user->id)
+            <td>{{ $user->name }}</td>
+        @endif
         <td>{{ $item->status }}</td>
       <td class="table-buttons">
         <a href="{{ route('deals.edit', $item->id) }}"  class="btn btn-primary">
@@ -47,6 +52,8 @@
         </form>
       </td>
     </tr>
+
+       @endforeach
   @endforeach
   </tbody>
 </table>
