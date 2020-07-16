@@ -241,7 +241,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        
+
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',

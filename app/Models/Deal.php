@@ -13,11 +13,18 @@ class Deal extends Model
         'deal_descrip',
         'deadline',
         'user_id',
-        'status'      
+        'status'
     ];
 
     public function users()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
+    public function clients()
+    {
+        //return $this->belongsToMany(Client::class);
+        return $this->belongsToMany('App\Models\Client', 'clients_has_deals');
+    }
+
 }

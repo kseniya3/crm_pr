@@ -25,7 +25,7 @@
         <div class="box-body">
             <div class="form-group">
                 <label>deal_name</label>
-                <input type="text" name="deal_name" class="form-control">
+                <input type="text" name="deal_name" class="form-control" value="{{old('deal_name')}}">
             </div>
 
 
@@ -41,22 +41,28 @@
                 <label>deadline</label>
                 <input type="dateTime-local" name="deadline" class="form-control">
             </div>
+
             <div class="form-group">
-                <label>user_id</label>
-                
+                <label>Cient</label>
+                <select name="client_id" class="form-control">
+                    @foreach($clients as $client)
+                    <option value="{{ $client->id}}">{{ $client->second_name}} {{ $client->first_name}} {{ $client->middle_name}} </option>
+                    @endforeach
+                </select>
             </div>
+
             <div class="form-group">
                 <label>status</label>
                 <input type="text" name="status" class="form-control">
             </div>
-            
+
         </div>
                 <!-- /.box-body -->
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
-    
+
 </div>
 
 @endsection

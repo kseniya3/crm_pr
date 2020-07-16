@@ -17,5 +17,11 @@ class Client extends Model
         'user_id',
     ];
 
+    public function deals()
+    {
+        //return $this->belongsToMany(Deal::class);
+        return $this->belongsToMany('App\Models\Deal', 'clients_has_deals');
+    }
+
 
 }

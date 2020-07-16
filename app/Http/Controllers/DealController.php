@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\User;
@@ -22,7 +23,9 @@ class DealController extends Controller
     public function index()
     {
         $items = Deal::all();
-        return view('deal.index', ['items'=>$items]);
+        $users = User::all();
+
+       return view('deal.index', ['items'=>$items], ['users'=>$users]);
     }
 
     /**
@@ -32,7 +35,8 @@ class DealController extends Controller
      */
     public function create()
     {
-        return view('deal.creat');
+        $clients = \App\Models\Client::all();
+        return view('deal.creat',['clients'=>$clients]);
     }
 
     /**
@@ -44,24 +48,26 @@ class DealController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
             'deal_name' => 'required|unique:deals,deal_name|max:255',
-            
             'close_date' => 'required|date|after_or_equal:open_data',
-            'deal_descrip' => 'required|max:255',
+            'deal_descrip' => 'max:255',
             'deadline' => 'required|date|after_or_equal:open_data',
             'status' => 'required|max:255'
         ]);
         $carbon = Carbon::now();
-        $deal = new Deal([
+
+        $deal = Deal::create([
             'deal_name' => $request->get('deal_name'),
-            'open_date' => $carbon,
-            'close_date' => $request->get('close_date'),
-            'deal_descrip' => $request->get('deal_descrip'),
+           'open_date' => $carbon,
+           'close_date' => $request->get('close_date'),
+           'deal_descrip' => $request->get('deal_descrip'),
             'deadline' => $request->get('deadline'),
             'user_id' => $request->user()->id,
             'status' => $request->get('status')
         ]);
+
+        $client = Client::find($request->client_id);
+        $deal->clients()->attach($client);
 
         $deal->save();
         return redirect('/deals')->with('success', 'Contact saved!');
@@ -86,9 +92,12 @@ class DealController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
-    { 
+    {
         $deal = Deal::find($id);
-        return view('deal.edit', compact('deal')); 
+        $user = User::find($deal->user_id);
+        //dd(User::find($deal->user_id));
+
+        return view('deal.edit', ['deal'=>$deal], ['user'=>$user]);
     }
 
     /**
@@ -104,7 +113,7 @@ class DealController extends Controller
             'deal_name' => 'required',
             'open_date' => 'required',
             'close_date' => '',
-            'deal_descrip' => 'required|max:255',
+            'deal_descrip' => 'max:255',
             'deadline' => 'required',
             'status' => 'required|max:255'
         ]);
@@ -115,7 +124,7 @@ class DealController extends Controller
         $deal->close_date = $request->get('close_date');
         $deal->deal_descrip = $request->get('deal_descrip');
         $deal->deadline = $request->get('deadline');
-        //$contact->first_name = $request->user()->id;
+        //$deal->first_name = $request->get('user_id');
         $deal->status = $request->get('status');
         $deal->save();
 
@@ -131,6 +140,9 @@ class DealController extends Controller
     public function destroy($id)
     {
         $deal = Deal::find($id);
+
+
+
         $deal->delete();
 
         return redirect('/deals')->with('success', 'Contact deleted!');
