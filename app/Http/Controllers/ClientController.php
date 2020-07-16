@@ -59,6 +59,7 @@ class ClientController extends Controller
         $client->save();
         
         return redirect()->route('clients.show_clients')->with('success','Сообщение было изменено');
+        
     }
 
     
@@ -83,6 +84,8 @@ class ClientController extends Controller
             'user_id' => $req->user()->id,
         ]);
         return redirect()->route('clients.show_clients')->with('success','Сообщение было добавленно');
+        
+
     }
     
 }

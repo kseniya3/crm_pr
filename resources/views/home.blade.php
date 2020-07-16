@@ -14,9 +14,6 @@
                         </div>
                     @endif
                     
-                    
-                    <a href="{{route('deals.index')}}">Deal</a>
-                    <a href="{{route('clients.show_clients')}}">Client</a>
 
                     {{ __('You are logged in!') }}
                 </div>
