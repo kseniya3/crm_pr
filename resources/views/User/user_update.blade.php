@@ -20,14 +20,14 @@
         </div>
       @endif
         <div class="form-group">
-            <label for="name">login</label>
-            <input type="text" name="name" id="name" class="form-control">
-            <label for="password">password</label>
-            <input type="text" name="password" id="password" class="form-control">
+            <label for="name" >login</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{$data->name}}">
+            <label for="password" >password</label>
+            <input type="text" name="password" id="password" class="form-control" >
             <label for="email">email</label>
-            <input type="text" name="email" id="email" class="form-control">
+            <input type="text" name="email" id="email" class="form-control" value="{{$data->email}}">
             <label for="role">role</label>
-            <input type="text" name="role" id="role" class="form-control">
+            <input type="text" name="role" id="role" class="form-control" value="{{$data->role}}">
             
             <button type="submit" class="btn btn-success">отправить</button>
         </div>

@@ -27,13 +27,13 @@
                 <label>deal_name</label>
                 <input type="text" name="deal_name" class="form-control">
             </div>
-            <div class="form-group">
+{{--             <div class="form-group">
                 <label>open_date</label>
-                <input type="text" name="open_date" class="form-control pull-right" id="datepicker">
-            </div>
+                <input type="dateTime-local" name="open_date" class="form-control pull-right" id="datepicker">
+            </div> --}}
             <div class="form-group">
                 <label>close_date</label>
-                <input type="text" name="close_date" class="form-control">
+                <input type="dateTime-local" name="close_date" class="form-control">
             </div>
             <div class="form-group">
                 <label>deal_descrip</label>
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label>deadline</label>
-                <input type="text" name="deadline" class="form-control">
+                <input type="dateTime-local" name="deadline" class="form-control">
             </div>
             <div class="form-group">
                 <label>user_id</label>

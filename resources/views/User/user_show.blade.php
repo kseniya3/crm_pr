@@ -7,8 +7,7 @@
                 <div class="box-body no-paddin">
                     <table class="box-body no-paddin">
                         <tbody>
-                            <input type="text">
-                            <button class="btn btn-danger"></button>
+                            
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Task</th>

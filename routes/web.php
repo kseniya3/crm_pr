@@ -46,6 +46,7 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
     Route::delete('/delete/{id}','ClientController@Del')->name('delete_client');
     Route::get('/update/{id}', 'ClientController@updateClientStr')->name('update_client_str');
     Route::post('/update/{id}','ClientController@updateClient')->name('update_client');
+    Route::post('/find', 'ClientController@FindClient')->name('find_client');
     Route::get('/', function(){
         return view('Client\client_temp');
     })->name('client-add-form');
