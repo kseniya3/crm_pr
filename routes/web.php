@@ -43,9 +43,10 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
 Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
     Route::post('/create', 'ClientController@create')->name('create_client');
     Route::get('/show', 'ClientController@Show')->name('show_clients');
-    Route::get('/delete/{id}','ClientController@Del')->name('delete_client');
+    Route::delete('/delete/{id}','ClientController@Del')->name('delete_client');
     Route::get('/update/{id}', 'ClientController@updateClientStr')->name('update_client_str');
     Route::post('/update/{id}','ClientController@updateClient')->name('update_client');
+    Route::post('/find', 'ClientController@FindClient')->name('find_client');
     Route::get('/', function(){
         return view('Client\client_temp');
     })->name('client-add-form');
@@ -53,6 +54,15 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
     
 });
 
-
+Route::group(['prefix' => '/users','as'=>'users.'], function () {
+    Route::get('/', function () {
+        return view('User\user_add');
+    });
+    Route::post('/create','UserController@create')->name('create_user');
+    Route::get('/show', 'UserController@Show')->name('show_user');
+    Route::delete('/delete/{id}','UserController@Del')->name('delete_user');
+    Route::get('/update/{id}', 'USerController@updateUserStr')->name('update_user_str');
+    Route::post('/update/{id}','UserController@updateUser')->name('update_user');
+});
 
 Route::get('/deal', 'DealController@index')->name('deal');

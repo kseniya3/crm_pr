@@ -35,6 +35,16 @@
                             <th></th>
                         </tr>
                         </thead>
+                <h3 class="box-title">Condensed Full Width Table</h3>
+                <div class="box-body no-paddin">
+                    <form action="{{route('clients.find_client')}}" method="post">
+                    @csrf
+                    <input type="text" name="find" id="find" class="form-control">
+                    <button type="submit" class="btn btn-primary">Найти</button>
+                    </form>
+                   
+                    
+                    <table class="box-body no-paddin">
                         <tbody>
                         @foreach($items as $item)
                             <tr>
@@ -52,7 +62,13 @@
                                     <button class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-hasopup="true" aria-expended="false">Actions</button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                        <a href="{{route('clients.delete_client',$item->id)}}" class="dropdown-item">Delete</a>
+                                            <form method="POST" action="{{route('clients.delete_client',$item->id)}}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
                                         </li>
                                         <li>
                                         <a href="{{route('clients.update_client_str',$item->id)}}" class="dropdown-item">Show</a>

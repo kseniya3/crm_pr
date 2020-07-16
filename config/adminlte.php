@@ -275,7 +275,7 @@ return [
         ],
         [
             'text' => 'Страница пользователей',
-            'url'  => 'home/users',
+            'url'  => '/users',
             'icon'  => 'fa fa-book',
         ],
         [

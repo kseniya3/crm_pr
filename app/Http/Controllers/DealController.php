@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\User;
+use Carbon\Carbon;
 
 class DealController extends Controller
 {
@@ -43,17 +44,18 @@ class DealController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            
             'deal_name' => 'required|unique:deals,deal_name|max:255',
-            'open_date' => 'required',
-            'close_date' => '',
+            
+            'close_date' => 'required|date|after_or_equal:open_data',
             'deal_descrip' => 'required|max:255',
-            'deadline' => 'required',
+            'deadline' => 'required|date|after_or_equal:open_data',
             'status' => 'required|max:255'
         ]);
-
+        $carbon = Carbon::now();
         $deal = new Deal([
             'deal_name' => $request->get('deal_name'),
-            'open_date' => $request->get('open_date'),
+            'open_date' => $carbon,
             'close_date' => $request->get('close_date'),
             'deal_descrip' => $request->get('deal_descrip'),
             'deadline' => $request->get('deadline'),

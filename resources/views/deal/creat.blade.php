@@ -27,10 +27,8 @@
                 <label>deal_name</label>
                 <input type="text" name="deal_name" class="form-control">
             </div>
-            <div class="form-group">
-                <label>open_date</label>
-                <input type="dateTime-local" name="open_date" class="form-control pull-right" id="datepicker">
-            </div>
+
+
             <div class="form-group">
                 <label>close_date</label>
                 <input type="dateTime-local" name="close_date" class="form-control">
