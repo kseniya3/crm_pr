@@ -23,7 +23,17 @@
                                     <td>{{$item->contacts_email}}</td>
                                     <td>{{$item->description}}</td>
                                     <td>{{$item->company_name}}</td>
-                                    <td><a href="{{route('clients.delete_client',$item->id)}}"><button class="btn btn-warning">Удалить</button></a></td>
+                                    <td>
+                                        <form method="POST" action="{{route('clients.delete_client',$item->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                               <button type="submit" class="btn btn-danger">
+                                                 <i class="fa fa-trash"></i>
+                                               </button>
+                                        </form>
+                                    </td>
+                                    
+                                    
                                     <td><a href="{{route('clients.update_client_str',$item->id)}}"><button class="btn btn-primary">Редактировать</button></a></td>
                                     
                                 </tr>

@@ -21,7 +21,7 @@
     <form action="{{route('clients.create_client')}}" method="post">
         @csrf
         <div class="form-group">
-            @if (count($errors) > 0)
+          @if (count($errors) > 0)
             <div class="alert alert-danger">
               <ul>
                 @foreach ($errors->all() as $error)

@@ -17,7 +17,7 @@
                     
                     <a href="{{route('deals.index')}}">Deal</a>
                     <a href="{{route('clients.show_clients')}}">Client</a>
-
+                    <a href="{{route('users.show_user')}}">User</a>
                     {{ __('You are logged in!') }}
                 </div>
             </div>
