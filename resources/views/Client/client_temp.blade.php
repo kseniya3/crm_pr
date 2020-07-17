@@ -44,6 +44,13 @@
             <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
             <label for="company_name">company name</label>
             <input type="text" name="company_name" id="company_name"class="form-control">
+            <div class="form-group">
+              <label>Deal</label>
+                  @foreach($deals as $deal)
+                      <input type="checkbox" name="deals[]" value="{{$deal->id}}">
+                      <label class="">{{$deal->deal_name}}</label>
+                  @endforeach
+            </div>
             <button type="submit" class="btn btn-success">отправить</button>
         </div>
     </form>
