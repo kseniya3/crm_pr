@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <script src="{{asset('js/app.js')}}"></script>
+    <!-- <script src="{{asset('js/app.js')}}"></script> -->
 <div id="vue-id" class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
