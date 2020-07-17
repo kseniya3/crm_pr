@@ -25,11 +25,7 @@
             <input type="text" name="deal_name"
                    value="{{$deal->deal_name}}" class="form-control" id="post-title">
         </div>
-        <div class="form-group">
-            <label for="post-title">open_date</label>
-            <input type="text" name="open_date"
-                   value="{{$deal->open_date}}" class="form-control" id="post-title">
-        </div>
+
         <div class="form-group">
             <label for="post-title">close_date</label>
             <input type="text" name="close_date"
@@ -46,9 +42,22 @@
                    value="{{$deal->deadline}}" class="form-control" id="post-title">
         </div>
         <div class="form-group">
+            <label>Cient</label>
+            @foreach($clients as $client)
+                <input type="checkbox" name="clients[]" value="{{$client->id}}"
+                       @if($deal->clients->where('id', $client->id)->count())
+                       checked="checked"
+                    @endif
+                >
+                <label class="">{{$client->second_name}}</label>
+            @endforeach
+        </div>
+        <div class="form-group">
             <label for="post-title">status</label>
-            <input type="text" name="status"
-                   value="{{$deal->status}}" class="form-control" id="post-title">
+            <select name="status" class="form-control">
+                    <option >open</option>
+                    <option >closed</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-success">Отредактировать</button>
     </form>

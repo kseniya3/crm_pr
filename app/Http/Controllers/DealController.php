@@ -22,10 +22,10 @@ class DealController extends Controller
      */
     public function index()
     {
-        $items = Deal::all();
-        $users = User::all();
-
-       return view('deal.index', ['items'=>$items], ['users'=>$users]);
+       return view('deal.index',
+           ['items'=>Deal::get()],
+           ['users'=>User::get()]
+       );
     }
 
     /**
@@ -35,8 +35,9 @@ class DealController extends Controller
      */
     public function create()
     {
-        $clients = \App\Models\Client::all();
-        return view('deal.creat',['clients'=>$clients]);
+        return view('deal.creat',
+            ['clients'=> Client::get()]
+        );
     }
 
     /**
@@ -66,8 +67,9 @@ class DealController extends Controller
             'status' => $request->get('status')
         ]);
 
-        $client = Client::find($request->client_id);
-        $deal->clients()->attach($client);
+        if($request->input('clients')):
+            $deal->clients()->attach($request->input('clients'));
+        endif;
 
         $deal->save();
         return redirect('/deals')->with('success', 'Contact saved!');
@@ -116,13 +118,17 @@ class DealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $deal = Deal::find($id);
         $user = User::find($deal->user_id);
-        //dd(User::find($deal->user_id));
 
-        return view('deal.edit', ['deal'=>$deal], ['user'=>$user]);
+        return view('deal.edit',
+            ['deal'=>$deal,
+                'clients'=> Client::get()],
+            ['user'=>$user],
+            //['clients'=> Client::get()]
+        );
     }
 
     /**
@@ -136,16 +142,20 @@ class DealController extends Controller
     {
         $request->validate([
             'deal_name' => 'required',
-            'open_date' => 'required',
             'close_date' => '',
             'deal_descrip' => 'max:255',
             'deadline' => 'required',
             'status' => 'required|max:255'
         ]);
-
         $deal = Deal::find($id);
+
+        $deal->clients()->detach();
+        if($request->input('clients')):
+            $deal->clients()->attach($request->input('clients'));
+        endif;
+
+        //$deal = Deal::find($id);
         $deal->deal_name = $request->get('deal_name');
-        $deal->open_date = $request->get('open_date');
         $deal->close_date = $request->get('close_date');
         $deal->deal_descrip = $request->get('deal_descrip');
         $deal->deadline = $request->get('deadline');
@@ -165,9 +175,7 @@ class DealController extends Controller
     public function destroy($id)
     {
         $deal = Deal::find($id);
-
-
-
+        $deal->clients()->detach();
         $deal->delete();
 
         return redirect('/deals')->with('success', 'Contact deleted!');
