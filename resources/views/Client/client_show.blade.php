@@ -44,8 +44,6 @@
                     <button type="submit" class="btn btn-primary">Найти</button>
                     </form>
 
-
-                    <table class="box-body no-paddin">
                         <tbody>
                         @foreach($items as $item)
                             <tr>
@@ -67,9 +65,7 @@
                                             <form method="POST" action="{{route('clients.delete_client',$item->id)}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
+                                                <button type="submit" class="dropdown-item">Delete</button>
                                             </form>
                                         </li>
                                         <li>
