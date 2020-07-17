@@ -36,7 +36,6 @@
                             <th></th>
                         </tr>
                         </thead>
-                <h3 class="box-title">Condensed Full Width Table</h3>
                 <div class="box-body no-paddin">
                     <form action="{{route('clients.find_client')}}" method="post">
                     @csrf

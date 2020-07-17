@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-class
 
 
-dflsdnUserController extends Controller
+
+class UserController extends Controller
 {
+    /* public function __construct()
+    {
+        $this->middleware('role');
+    } */
     protected function validator(array $data)
     {
         return Validator::make($data,[

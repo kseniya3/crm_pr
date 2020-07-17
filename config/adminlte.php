@@ -277,6 +277,8 @@ return [
             'text' => 'Страница пользователей',
             'url'  => '/users',
             'icon'  => 'fa fa-book',
+            'can'=>'isAdmin',
+            
         ],
         [
             'text'    => 'multilevel',

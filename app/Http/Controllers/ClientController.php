@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class ClientController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function OpenCreate()
     {
         return view('Client.client_temp',
@@ -105,6 +109,7 @@ class ClientController extends Controller
         $client->description = $req->input('description');
         $client->company_name = $req->input('company_name');
         $client->user_id = $req->user()->id;
+        $client->deals()->detach();
         if($req->input('deals')):
             $client->deals()->attach($req->input('deals'));
         endif;

@@ -27,6 +27,7 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
+
 Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/', 'DealController@index')->name('index');
     Route::get('/create', 'DealController@create')->name('create');
@@ -53,7 +54,7 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
     
 });
 
-Route::group(['prefix' => '/users','as'=>'users.'], function () {
+Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], function () {
     Route::get('/', function () {
         return view('User\user_add');
     });

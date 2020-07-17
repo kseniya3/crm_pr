@@ -41,4 +41,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Deal');
     }
+
+    public function isAdmin(){
+        
+        if($this->role=="admin"){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
