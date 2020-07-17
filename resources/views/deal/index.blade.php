@@ -14,7 +14,7 @@
       <a href="{{route('deals.create')}}" class="btn btn-outline-success">Add deal</a>
       @if(session()->get('success'))
           <div class="alert alert-success mt-3">
-            {{ session()->get('success') }}  
+            {{ session()->get('success') }}
           </div>
       @endif
     </div>
@@ -24,20 +24,22 @@
         <div class="col-sm-12">
           <table class="table table-bordered table-hover dataTable" role="grid">
             <thead>
-              <tr role="row" class="box-title">      
+              <tr role="row" class="box-title">
                 <th scope="col">№</th>
                 <th scope="col">Appelation</th>
                 <th scope="col">Start date</th>
                 <th scope="col">Finish date</th>
                 <th scope="col">Description</th>
                 <th scope="col">Deadline</th>
-                <th scope="col">User id</th>
+                <th scope="col">Manager</th>
+                <th scope="col">Client</th>
                 <th scope="col">Status</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               @foreach($items as $item)
+                  @foreach($users as $user)
               <tr class="lead">
                   <td scope="row">{{ $item->id }}</td>
                   <td>{{ $item->deal_name }}</td>
@@ -45,9 +47,12 @@
                   <td>{{ $item->close_date }}</td>
                   <td>{{ $item->deal_descrip }}</td>
                   <td>{{ $item->deadline }}</td>
-                  <td>{{ $item->user_id }}</td>
+                  @if($item->user_id === $user->id)
+                      <td>{{ $user->name }}</td>
+                  @endif
+                  <td>{{ $item->clients()->pluck('second_name')->implode(', ')}}</td>
                   <td>{{ $item->status }}</td>
-                
+
                 <td class="table-buttons">
                   <div class="input-group-btn">
                   <button type="submit" class="btn btn-outline-danger dropdown-toggle"
@@ -63,12 +68,13 @@
                           </form>
                           </li>
                           <li>
-                          <a class="dropdown-item" href="{{ route('deals.edit', $item->id) }}">Show</a>
+                          <a class="dropdown-item" href="{{ route('deals.edit', $item->id) }}">Edit</a>
                           </li>
                         </ul>
                     </div>
                   </td>
               </tr>
+              @endforeach
             @endforeach
             </tbody>
           </table>

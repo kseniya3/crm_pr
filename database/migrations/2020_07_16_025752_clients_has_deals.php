@@ -18,7 +18,7 @@ class ClientsHasDeals extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('deal_id');
             $table->foreign('client_id')->references('id')->on('clients');
-            $table->foreign('deal_id')->references('id')->on('deals');
+            $table->foreign('deal_id')->references('id')->on('deals')->onDelete('cascade');;
         });
     }
 

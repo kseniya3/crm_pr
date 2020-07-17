@@ -41,19 +41,29 @@
                 <label>deadline</label>
                 <input type="dateTime-local" name="deadline" class="form-control">
             </div>
-
             <div class="form-group">
                 <label>Cient</label>
-                <select name="client_id" class="form-control">
                     @foreach($clients as $client)
-                    <option value="{{ $client->id}}">{{ $client->second_name}} {{ $client->first_name}} {{ $client->middle_name}} </option>
+                        <input type="checkbox" name="clients[]" value="{{$client->id}}">
+                        <label class="">{{$client->second_name}}</label>
                     @endforeach
-                </select>
             </div>
 
+{{--            <div class="form-group">--}}
+{{--                <label>Cient</label>--}}
+{{--                <select name="client_id" class="form-control">--}}
+{{--                    @foreach($clients as $client)--}}
+{{--                    <option value="{{ $client->id}}">{{ $client->second_name}} {{ $client->first_name}} {{ $client->middle_name}} </option>--}}
+{{--                    @endforeach--}}
+{{--                </select>--}}
+{{--            </div>--}}
+
             <div class="form-group">
-                <label>status</label>
-                <input type="text" name="status" class="form-control">
+                <label for="post-title">status</label>
+                <select name="status" class="form-control">
+                    <option >open</option>
+                    <option >closed</option>
+                </select>
             </div>
 
         </div>

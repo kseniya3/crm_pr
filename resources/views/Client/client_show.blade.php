@@ -8,13 +8,13 @@
 
 @section('content')
     <div class="col-xs-12">
-        
+
         <div class="box">
             <div class="box-header">
                     <a href="{{route('clients.client-add-form')}}" class="btn btn-outline-success">Add client</a>
                     @if(session()->get('success'))
                     <div class="alert alert-success mt-3">
-                        {{ session()->get('success') }}  
+                        {{ session()->get('success') }}
                     </div>
                     @endif
             </div>
@@ -23,7 +23,7 @@
             <div class="col-sm-12">
                     <table class="table table-bordered table-hover dataTable" role="grid">
                         <thead>
-                        <tr role="row" class="box-title">      
+                        <tr role="row" class="box-title">
                             <th scope="col">№</th>
                             <th scope="col">Second name</th>
                             <th scope="col">First name</th>
@@ -32,6 +32,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Description</th>
                             <th scope="col">Company</th>
+                            <th scope="col">Deal</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -42,8 +43,8 @@
                     <input type="text" name="find" id="find" class="form-control">
                     <button type="submit" class="btn btn-primary">Найти</button>
                     </form>
-                   
-                    
+
+
                     <table class="box-body no-paddin">
                         <tbody>
                         @foreach($items as $item)
@@ -56,6 +57,7 @@
                                 <td>{{$item->contacts_email}}</td>
                                 <td>{{$item->description}}</td>
                                 <td>{{$item->company_name}}</td>
+                                <td>{{ $item->deals()->pluck('deal_name')->implode(', ')}}</td>
 
                                 <td class="table-buttons">
                                 <div class="input-group-btn">
@@ -85,7 +87,7 @@
             </div>
         </div>
     </div>
-            
+
 
     </div>
 @endsection

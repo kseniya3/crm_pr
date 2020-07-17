@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Deal;
 use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
-   
-    
+
+
     protected function validator(array $data)
     {
         return Validator::make($data,[
@@ -30,7 +31,7 @@ class ClientController extends Controller
     }
     protected function FindClient(Request $req)
     {
-        
+
         $items = Client::all();
         $findznach=$req->input('find');
         if($req->input('find')==""){
@@ -52,15 +53,15 @@ class ClientController extends Controller
             $query->orWhere($column, 'LIKE', $findznach."%");
         }
         $client = $query->get();
-        
-        return view('Client.client_show', ['items'=>$client]);   
+
+        return view('Client.client_show', ['items'=>$client]);
     }
     public function Del($id)
     {
         Client::find($id)->delete();
         return redirect()->route('clients.show_clients')->with('success','Сообщение было удалено');
     }
-    
+
 
     public function updateClientStr($id){
         $client = new Client;
@@ -75,7 +76,7 @@ class ClientController extends Controller
             return redirect()->back()->withErrors($validate)->withInput();
         }
         $client=Client::find($id);
-        
+
         $client->second_name = $req->input('second_name');
         $client->first_name = $req->input('first_name');
         $client->middle_name = $req->input('middle_name');
@@ -86,23 +87,23 @@ class ClientController extends Controller
         $client->user_id = $req->user()->id;
 
         $client->save();
-        
+
         return redirect()->route('clients.show_clients')->with('success','Сообщение было изменено');
-        
+
     }
 
-    
+
 
     public function create(Request $req)
     {
         /* dd($req->all()); */
-       
+
         $validate=self::validator($req->all());
         if($validate->fails()){
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
-        
+
         Client::create([
             'second_name' =>$req['second_name'] ,
             'first_name' => $req['first_name'],
@@ -114,8 +115,8 @@ class ClientController extends Controller
             'user_id' => $req->user()->id,
         ]);
         return redirect()->route('clients.show_clients')->with('success','Сообщение было добавленно');
-        
+
 
     }
-    
+
 }
