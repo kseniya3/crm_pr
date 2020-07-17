@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-class
 
 
-dflsdnUserController extends Controller
+
+class UserController extends Controller
 {
     protected function validator(array $data)
     {
@@ -29,7 +29,7 @@ dflsdnUserController extends Controller
     }
     protected function FindUser(Request $req)
     {
-        
+
         $items = User::all();
         $findznach=$req->input('find');
         if($req->input('find')==""){
@@ -44,8 +44,8 @@ dflsdnUserController extends Controller
             $query->orWhere($column, 'LIKE', $findznach."%");
         }
         $client = $query->get();
-        
-        return view('User.user_show', ['items'=>$client]);   
+
+        return view('User.user_show', ['items'=>$client]);
     }
     public function Del($id)
     {

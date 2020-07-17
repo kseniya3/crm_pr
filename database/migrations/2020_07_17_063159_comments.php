@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Clients extends Migration
+class Comments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class Clients extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('second_name');
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('contacts_telephone');
-            $table->string('contacts_email');
-            $table->text('description')->nullable();;
-            $table->string('company_name');
+            $table->string('comment_text');
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('user_id')->unsigned();
+            $table->foreign('deal_id')->references('id')->on('deals');
+            $table->bigInteger('deal_id')->unsigned();
+            $table->timestamps();
         });
     }
 
@@ -35,6 +31,6 @@ class Clients extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('comments');
     }
 }

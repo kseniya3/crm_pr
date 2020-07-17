@@ -31,15 +31,15 @@
 
             <div class="form-group">
                 <label>close_date</label>
-                <input type="dateTime-local" name="close_date" class="form-control">
+                <input type="dateTime-local" name="close_date" class="form-control" value="{{old('close_date')}}">
             </div>
             <div class="form-group">
                 <label>deal_descrip</label>
-                <input type="text" name="deal_descrip" class="form-control">
+                <input type="text" name="deal_descrip" class="form-control" value="{{old('deal_descrip')}}">
             </div>
             <div class="form-group">
                 <label>deadline</label>
-                <input type="dateTime-local" name="deadline" class="form-control">
+                <input type="dateTime-local" name="deadline" class="form-control" value="{{old('deadline')}}">
             </div>
             <div class="form-group">
                 <label>Cient</label>
@@ -48,19 +48,13 @@
                         <label class="">{{$client->second_name}}</label>
                     @endforeach
             </div>
-
-{{--            <div class="form-group">--}}
-{{--                <label>Cient</label>--}}
-{{--                <select name="client_id" class="form-control">--}}
-{{--                    @foreach($clients as $client)--}}
-{{--                    <option value="{{ $client->id}}">{{ $client->second_name}} {{ $client->first_name}} {{ $client->middle_name}} </option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
-{{--            </div>--}}
-
+            <div class="form-group">
+                <label for="post-title">comment</label>
+                <input type="text" name="comment" class="form-control" value="{{old('comment')}}">
+            </div>
             <div class="form-group">
                 <label for="post-title">status</label>
-                <select name="status" class="form-control">
+                <select name="status" class="form-control" value="{{old('status')}}">
                     <option >open</option>
                     <option >closed</option>
                 </select>
