@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-class UserController extends Controller
+class
+
+
+dflsdnUserController extends Controller
 {
     protected function validator(array $data)
     {
@@ -15,7 +18,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string', 'max:15'],
-            
+
         ]);
     }
 
@@ -42,7 +45,7 @@ class UserController extends Controller
         }
 
         $user=new User;
-        
+
             $user->name = $req->input('name');
             $user->email = $req->input('email');
             $user->password = Hash::make($req->input('password'));
@@ -59,7 +62,7 @@ class UserController extends Controller
         }
 
         $user=new User;
-        
+
             $user->name = $req->input('name');
             $user->email = $req->input('email');
             $user->password = Hash::make($req->input('password'));
@@ -68,7 +71,7 @@ class UserController extends Controller
         return redirect()->route('users.show_user')->with('success','Сообщение было добавленно');
     }
 
-    
+
 
 
 }

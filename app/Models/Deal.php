@@ -24,7 +24,7 @@ class Deal extends Model
     public function clients()
     {
         //return $this->belongsToMany(Client::class);
-        return $this->belongsToMany('App\Models\Client', 'clients_has_deals');
+        return $this->belongsToMany('App\Models\Client', 'clients_has_deals','deal_id','client_id');
     }
 
 }
