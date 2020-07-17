@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
+    <script src="{{asset('js/app.js')}}"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,12 +14,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
-                    
+
                     <a href="{{route('deals.index')}}">Deal</a>
                     <a href="{{route('clients.show_clients')}}">Client</a>
                     <a href="{{route('users.show_user')}}">User</a>
                     {{ __('You are logged in!') }}
+                        <div id="app"><example-component>hoii</example-component></div>
                 </div>
             </div>
         </div>
