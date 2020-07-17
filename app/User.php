@@ -42,12 +42,17 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Deal');
     }
 
-    public function isAdmin(){
-        
+    public function isAdmin()
+    {
         if($this->role=="admin"){
             return true;
         }else{
             return false;
         }
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 }

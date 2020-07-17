@@ -33,6 +33,7 @@
                 <th scope="col">Deadline</th>
                 <th scope="col">Manager</th>
                 <th scope="col">Client</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Status</th>
                 <th></th>
               </tr>
@@ -51,6 +52,7 @@
                       <td>{{ $user->name }}</td>
                   @endif
                   <td>{{ $item->clients()->pluck('second_name')->implode(', ')}}</td>
+                  <td> <a href="{{route('comments.show', $item->id)}}">Comment</a></td>
                   <td>{{ $item->status }}</td>
 
                 <td class="table-buttons">

@@ -33,7 +33,7 @@ class UserController extends Controller
     }
     protected function FindUser(Request $req)
     {
-        
+
         $items = User::all();
         $findznach=$req->input('find');
         if($req->input('find')==""){
@@ -48,8 +48,8 @@ class UserController extends Controller
             $query->orWhere($column, 'LIKE', $findznach."%");
         }
         $client = $query->get();
-        
-        return view('User.user_show', ['items'=>$client]);   
+
+        return view('User.user_show', ['items'=>$client]);
     }
     public function Del($id)
     {
