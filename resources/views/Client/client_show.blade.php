@@ -17,6 +17,7 @@
                         {{ session()->get('success') }}
                     </div>
                     @endif
+
             </div>
             <div class="box-body">
         <div class="row">
@@ -36,20 +37,21 @@
                             <th></th>
                         </tr>
                         </thead>
-                <h3 class="box-title">Condensed Full Width Table</h3>
                 <div class="box-body no-paddin">
-                    <form action="{{route('clients.find_client')}}" method="post">
-                    @csrf
-                    <input type="text" name="find" id="find" class="form-control">
-                    <button type="submit" class="btn btn-primary">Найти</button>
-                    </form>
 
-
-                    <table class="box-body no-paddin">
+                    <div class="input-group margin">
+                        <form action="{{route('clients.find_client')}}" method="post">
+                            @csrf
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-outline-info">Find</button>
+                            </div>
+                            <input type="text" name="find" id="find" class="form-control">
+                        </form>
+                    </div>
                         <tbody>
                         @foreach($items as $item)
-                            <tr>
-                                <td>{{$item->id}}</td>
+                            <tr class="lead">
+                                <td scope="row">{{$item->id}}</td>
                                 <td>{{$item->second_name}}</td>
                                 <td>{{$item->first_name}}</td>
                                 <td>{{$item->middle_name}}</td>
@@ -67,15 +69,14 @@
                                             <form method="POST" action="{{route('clients.delete_client',$item->id)}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
+                                                <button class="dropdown-item">Delete</button>
                                             </form>
                                         </li>
                                         <li>
                                         <a href="{{route('clients.update_client_str',$item->id)}}" class="dropdown-item">Show</a>
                                         </li>
                                     </ul>
+                                    <example-component></example-component>
                                 </div>
                                 </td>
                             </tr>
