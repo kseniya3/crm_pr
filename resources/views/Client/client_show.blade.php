@@ -42,7 +42,7 @@
                     <input type="text" name="find" id="find" class="form-control">
                     <button type="submit" class="btn btn-primary">Найти</button>
                     </form>
-                   
+                
                     
                     <table class="box-body no-paddin">
                         <tbody>

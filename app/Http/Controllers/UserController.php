@@ -24,6 +24,26 @@ class UserController extends Controller
         $items = User::all();
         return view('User.user_show', ['items'=>$items]);
     }
+    protected function FindUser(Request $req)
+    {
+        
+        $items = User::all();
+        $findznach=$req->input('find');
+        if($req->input('find')==""){
+            return view('Client.client_show', ['items'=>$items]);
+        }
+        $columns = [
+            'name', 'email', 'password', 'role',
+        ];
+        $query = User::select('*');
+        foreach($columns as $column)
+        {
+            $query->orWhere($column, 'LIKE', $findznach."%");
+        }
+        $client = $query->get();
+        
+        return view('User.user_show', ['items'=>$client]);   
+    }
     public function Del($id)
     {
         User::find($id)->delete();

@@ -4,6 +4,11 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Condensed Full Width Table</h3>
+                <form action="{{route('users.find_user')}}" method="post">
+                    @csrf
+                    <input type="text" name="find" id="find" class="form-control">
+                    <button type="submit" class="btn btn-primary">Найти</button>
+                </form>
                 <div class="box-body no-paddin">
                     <table class="box-body no-paddin">
                         <tbody>

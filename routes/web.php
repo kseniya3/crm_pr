@@ -35,6 +35,7 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::put('/{id}','DealController@update')->name('update');
     Route::patch('/{id}','DealController@update');
     Route::delete('/{id}', 'DealController@destroy')->name('destroy');
+    Route::post('/find', 'DealController@FindDeal')->name('find_deal');
 }); 
 
 //Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
@@ -63,6 +64,7 @@ Route::group(['prefix' => '/users','as'=>'users.'], function () {
     Route::delete('/delete/{id}','UserController@Del')->name('delete_user');
     Route::get('/update/{id}', 'USerController@updateUserStr')->name('update_user_str');
     Route::post('/update/{id}','UserController@updateUser')->name('update_user');
+    Route::post('/find', 'UserController@FindUser')->name('find_user');
 });
 
 Route::get('/deal', 'DealController@index')->name('deal');

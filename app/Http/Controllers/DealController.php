@@ -73,7 +73,32 @@ class DealController extends Controller
         return redirect('/deals')->with('success', 'Contact saved!');
 
     }
-
+    protected function FindDeal(Request $req)
+    {
+        
+        $items = Deal::all();
+        $findznach=$req->input('find');
+        if($req->input('find')==""){
+            return view('Client.client_show', ['items'=>$items]);
+        }
+        $columns = [
+            'deal_name',
+            'open_date',
+            'close_date',
+            'deal_descrip',
+            'deadline',
+            'user_id',
+            'status'
+        ];
+        $query = Deal::select('*');
+        foreach($columns as $column)
+        {
+            $query->orWhere($column, 'LIKE', $findznach."%");
+        }
+        $client = $query->get();
+        
+        return view('Deal.show', ['items'=>$client]);   
+    }
     /**
      * Display the specified resource.
      *
