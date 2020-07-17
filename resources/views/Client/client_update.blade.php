@@ -45,6 +45,13 @@
             <label for="company_name">company name</label>
             <input type="text" name="company_name" id="company_name"class="form-control" value="{{$data->company_name}}">
             <button type="submit" class="btn btn-success">обновить</button>
+            <div class="form-group">
+              <label>Deal</label>
+                  @foreach($deals as $deal)
+                      <input type="checkbox" name="deals[]" value="{{$deal->id}}">
+                      <label class="">{{$deal->deal_name}}</label>
+                  @endforeach
+            </div>
         </div>
     </form>
 </body>
