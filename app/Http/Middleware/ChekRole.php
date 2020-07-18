@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class ChekRole
@@ -15,10 +15,15 @@ class ChekRole
      */
     public function handle($request, Closure $next)
     {
-        if($request->role != "admin"){
-            /* dd($request->all()); */
-            return redirect()->back();
+        $user = Auth::user();
+        /* dd($user->isAdmin()); */
+        if($user->isAdmin()){
+            return $next($request);
+        }else{
+            return redirect()->back()->withInput();
         }
-        return $next($request);
+            
+        
+        
     }
 }

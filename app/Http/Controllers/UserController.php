@@ -25,6 +25,16 @@ class UserController extends Controller
 
         ]);
     }
+    protected function update_validator(array $data)
+    {
+        return Validator::make($data,[
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            'role' => ['required', 'string', 'max:15'],
+
+        ]);
+    }
 
     protected function Show()
     {
@@ -60,15 +70,15 @@ class UserController extends Controller
         $user = new User;
         return view('User.user_update',['data'=>$user->find($id)]);
     }
-    protected function updateUser(Request $req)
+    protected function updateUser($id,Request $req)
     {
-        $validate=self::validator($req->all());
+        $validate=self::update_validator($req->all());
         if($validate->fails()){
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
 
-        $user=new User;
+        $user=User::find($id);
 
             $user->name = $req->input('name');
             $user->email = $req->input('email');
