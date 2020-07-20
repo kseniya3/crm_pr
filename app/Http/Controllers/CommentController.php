@@ -8,6 +8,10 @@ use App\Models\Deal;
 use App\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class CommentController extends Controller
 {
     public function __construct()
@@ -42,7 +46,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = Comment::create([
+            'comment_text' => $request->get('comment_text'),
+            'user_id' => $request->get('user_id'),
+            'deal_id' => $request->get('deal_id')
+        ]);
+        $comment->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -55,11 +66,13 @@ class CommentController extends Controller
     {
         $deal = Deal::find($id);
         $user = User::find($deal->user_id);
+        $comments = $deal->comments()->paginate(5);
 
         return view('Comment.index',
             ['deal'=>$deal,
-             'clients'=> Client::get()],
+             'comments'=>$comments],
             ['users'=>$user]
+
         );
     }
 
@@ -94,6 +107,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        return redirect()->back();
     }
 }

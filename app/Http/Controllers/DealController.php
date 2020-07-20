@@ -20,10 +20,10 @@ class DealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Deal $deal)
     {
        return view('deal.index',
-           ['items'=>Deal::get()],
+           ['items'=>$deal->paginate(6)],
            ['users'=>User::get()]
        );
     }
@@ -77,7 +77,7 @@ class DealController extends Controller
     }
     protected function FindDeal(Request $req)
     {
-        
+
         $items = Deal::all();
         $findznach=$req->input('find');
         if($req->input('find')==""){
@@ -98,8 +98,8 @@ class DealController extends Controller
             $query->orWhere($column, 'LIKE', $findznach."%");
         }
         $client = $query->get();
-        
-        return view('Deal.show', ['items'=>$client]);   
+
+        return view('Deal.show', ['items'=>$client]);
     }
     /**
      * Display the specified resource.
