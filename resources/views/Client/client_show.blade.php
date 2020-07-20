@@ -55,7 +55,6 @@
                                 <td>{{$item->description}}</td>
                                 <td>{{$item->company_name}}</td>
                                 <td>{{ $item->deals()->pluck('deal_name')->implode(', ')}}</td>
-
                                 <td class="table-buttons">
                                 <div class="input-group-btn">
                                     <button class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-hasopup="true" aria-expended="false">Actions</button>
@@ -85,4 +84,6 @@
 
 
     </div>
+    <script src="https://unpkg.com/vue"></script>
+
 @endsection

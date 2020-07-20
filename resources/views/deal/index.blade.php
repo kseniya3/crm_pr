@@ -42,15 +42,16 @@
               @foreach($items as $item)
                   @foreach($users as $user)
               <tr class="lead">
+                @if($item->user_id === $user->id)
                   <td scope="row">{{ $item->id }}</td>
                   <td>{{ $item->deal_name }}</td>
                   <td>{{ $item->open_date }}</td>
                   <td>{{ $item->close_date }}</td>
                   <td>{{ $item->deal_descrip }}</td>
                   <td>{{ $item->deadline }}</td>
-                  @if($item->user_id === $user->id)
+                  
                       <td>{{ $user->name }}</td>
-                  @endif
+                  
                   <td>{{ $item->clients()->pluck('second_name')->implode(', ')}}</td>
                   <td> <a href="{{route('comments.show', $item->id)}}">Comment</a></td>
                   <td>{{ $item->status }}</td>
@@ -76,6 +77,7 @@
                     </div>
                   </td>
               </tr>
+              @endif
               @endforeach
             @endforeach
             </tbody>

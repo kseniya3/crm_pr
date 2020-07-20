@@ -28,7 +28,7 @@ class ClientController extends Controller
             'second_name' => ['required','string','min:2','max:30'],
             'first_name' => ['required','string','min:2','max:30'],
             'middle_name' => ['required','string','min:2','max:30'],
-            'contacts_telephone' => ['unique:clients','required','string','min:11','max:12'],
+            'contacts_telephone' => ['unique:clients','required','string','min:11','numeric'],
             'contacts_email' => ['unique:clients','required','string','max:30'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
@@ -40,7 +40,7 @@ class ClientController extends Controller
             'second_name' => ['required','string','min:2','max:30'],
             'first_name' => ['required','string','min:2','max:30'],
             'middle_name' => ['required','string','min:2','max:30'],
-            'contacts_telephone' => [/* 'unique:clients', */'required','string','min:11','max:12'],
+            'contacts_telephone' => [/* 'unique:clients', */'required','string','min:11','numeric'],
             'contacts_email' => [/* 'unique:clients', */'required','string','max:30'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
@@ -145,7 +145,7 @@ class ClientController extends Controller
         if($req->input('deals')):
             $client->deals()->attach($req->input('deals'));
         endif;
-        $client->save();
+            $client->save();
         return redirect()->route('clients.show_clients')->with('success','Сообщение было добавленно');
 
 
