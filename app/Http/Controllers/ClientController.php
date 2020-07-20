@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function OpenCreate()
     {
         return view('Client.client_temp',
@@ -47,10 +47,10 @@ class ClientController extends Controller
         ]/* ,[ 'second_name.required'=>'Поле имя не заполнено',] */);
     }
 
-    protected function Show()
+    protected function Show(Client $client)
     {
         $items = Client::all();
-        return view('Client.client_show', ['items'=>$items]);
+        return view('Client.client_show', ['items'=>$client->paginate(2)]);
     }
     protected function FindClient(Request $req)
     {
