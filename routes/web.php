@@ -41,7 +41,8 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
 
 Route::group(['prefix'=>'/comments','as'=>'comments.'],function(){
     Route::get('/{id}', 'CommentController@show')->name('show');
-    Route::get('/create', 'CommentController@create')->name('create');
+    Route::post('/store', 'CommentController@store')->name('store');
+    Route::delete('/{id}', 'CommentController@destroy')->name('destroy');
 });
 
 //Route::get('/home/clients', 'ClientController@index')->name('client-add-form');

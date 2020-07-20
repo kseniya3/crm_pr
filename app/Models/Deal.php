@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Builder;
 
 class Deal extends Model
 {
@@ -25,6 +27,11 @@ class Deal extends Model
     {
         //return $this->belongsToMany(Client::class);
         return $this->belongsToMany('App\Models\Client', 'clients_has_deals','deal_id','client_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 
 }
