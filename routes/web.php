@@ -42,6 +42,7 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
 Route::group(['prefix'=>'/comments','as'=>'comments.'],function(){
     Route::get('/{id}', 'CommentController@show')->name('show');
     Route::post('/store', 'CommentController@store')->name('store');
+    Route::get('/{id}/edit', 'CommentController@edit')->name('edit');
     Route::delete('/{id}', 'CommentController@destroy')->name('destroy');
 });
 

@@ -67,6 +67,12 @@ class DealController extends Controller
             'status' => $request->get('status')
         ]);
 
+        $deal->comments()->create([
+            'comment_text' => $request->get('comment'),
+            'user_id' => $request->user()->id,
+            'deal_id' => $deal->id
+        ]);
+
         if($request->input('clients')):
             $deal->clients()->attach($request->input('clients'));
         endif;

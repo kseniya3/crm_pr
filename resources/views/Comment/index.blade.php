@@ -32,7 +32,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="{{ route('comments.store') }}" method="post">
+                <form role="form" action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                     <input type="hidden" name="deal_id" value="{{$deal->id}}">
                     {{ csrf_field() }}
@@ -44,8 +44,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
+                            <label class="col-sm-2 control-label" for="exampleInputFile">Name input</label>
+                            <input type="text" name="filename" class="form-control" value="{{old('filename')}}">
+                            <input type="file" name="file_path" id="filename" id="exampleInputFile">
                         </div>
                         <div class="form-group">
                             <dvi class="col-sm-4 col-sm-offset-2">
@@ -67,6 +68,7 @@
                             <th style="width: 10%">Data</th>
                             <th style="width: 10%">User</th>
                             <th style="width: 70%">Comment</th>
+                            <th style="width: 70%">File</th>
                             <th></th>
                         </tr>
                         @foreach($comments as $comment)
@@ -74,6 +76,7 @@
                             <td>{{$comment->created_at}}</td>
                             <td>{{$comment->user_id}}</td>
                             <td>{{$comment->comment_text}}</td>
+                            <td>{{$comment->commentsFile()->count()}}</td>
                             <td class="table-buttons">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-outline-danger dropdown-toggle"

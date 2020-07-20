@@ -21,4 +21,10 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Deal');
     }
+
+    public function commentsFile()
+    {
+        return $this->hasMany('App\Models\Comments_files');
+    }
+
 }

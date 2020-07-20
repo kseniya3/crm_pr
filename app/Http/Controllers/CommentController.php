@@ -51,6 +51,14 @@ class CommentController extends Controller
             'user_id' => $request->get('user_id'),
             'deal_id' => $request->get('deal_id')
         ]);
+
+        $path = $request->file('file_path')->store('uploads', 'public');
+
+        $comment->commentsFile()->create([
+            'filename' => $request->get('filename'),
+            'file_path' => $path,
+            'comment_id' => $comment->id
+        ]);
         $comment->save();
 
         return redirect()->back();
@@ -108,6 +116,7 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::find($id);
+        $comment->commentsFile()->delete();
         $comment->delete();
 
         return redirect()->back();
