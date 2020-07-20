@@ -1,8 +1,8 @@
 @extends('adminlte::page')
 
 @section('content_header')
-<div class="content-header">
-  <h1 class="box-title">Deals table</h1>
+<div id="dealId" class="content-header">
+  <dealComponent></dealComponent>
 </div>
 @endsection
 
@@ -74,7 +74,7 @@
                           <a class="dropdown-item" href="{{ route('deals.edit', $item->id) }}">Edit</a>
                           </li>
                         </ul>
-                    </div>
+                  </div>
                   </td>
               </tr>
               @endif
@@ -90,3 +90,6 @@
 </div>
 
 @endsection
+@push('js')
+    <script src="{{asset('js/app.js')}}"></script>
+@endpush

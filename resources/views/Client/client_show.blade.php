@@ -76,14 +76,10 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
+                {{$items->links()}}
             </div>
         </div>
     </div>
-
-
-    </div>
-    <script src="https://unpkg.com/vue"></script>
-
+</div>
 @endsection

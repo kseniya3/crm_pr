@@ -1,3 +1,4 @@
+
 <template>
     <div class="container">
         <div class="row justify-content-center">
@@ -6,7 +7,10 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        I'm an example ct.
+                    </div>
+                    <div class="card-body">
+                        <firsMyComp></firsMyComp>
                     </div>
                 </div>
             </div>
