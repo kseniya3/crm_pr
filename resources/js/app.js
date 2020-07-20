@@ -23,7 +23,22 @@ const v = new Vue({
     el: '#vue-id',
 });
 
+<<<<<<< HEAD
 
+=======
+Vue.component('dealComponent', require('./components/dealComponent.vue').default);
+
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+// const app = new Vue({
+//     el: '#app',
+// });
+>>>>>>> 561402a714fcb794a25d8e0ac6806109427ec0d1
 
 //import Deal from "./components/DealComponent"
 //import DealTable from "./components/DealTableComponent"
@@ -34,4 +49,8 @@ Vue.component('Deal', require('./components/DealComponent.vue').default);
 
 const dealVue = new Vue({
     el: '#deal_vue',
+});
+
+const dv = new Vue({
+    el: '#dealId',
 });

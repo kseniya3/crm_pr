@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function OpenCreate()
     {
         return view('Client.client_temp',
@@ -28,7 +28,7 @@ class ClientController extends Controller
             'second_name' => ['required','string','min:2','max:30'],
             'first_name' => ['required','string','min:2','max:30'],
             'middle_name' => ['required','string','min:2','max:30'],
-            'contacts_telephone' => ['unique:clients','required','string','min:11','max:12'],
+            'contacts_telephone' => ['unique:clients','required','string','min:11','numeric'],
             'contacts_email' => ['unique:clients','required','string','max:30'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
@@ -40,17 +40,17 @@ class ClientController extends Controller
             'second_name' => ['required','string','min:2','max:30'],
             'first_name' => ['required','string','min:2','max:30'],
             'middle_name' => ['required','string','min:2','max:30'],
-            'contacts_telephone' => [/* 'unique:clients', */'required','string','min:11','max:12'],
+            'contacts_telephone' => [/* 'unique:clients', */'required','string','min:11','numeric'],
             'contacts_email' => [/* 'unique:clients', */'required','string','max:30'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
         ]/* ,[ 'second_name.required'=>'Поле имя не заполнено',] */);
     }
 
-    protected function Show()
+    protected function Show(Client $client)
     {
         $items = Client::all();
-        return view('Client.client_show', ['items'=>$items]);
+        return view('Client.client_show', ['items'=>$client->paginate(2)]);
     }
     protected function FindClient(Request $req)
     {
@@ -145,7 +145,7 @@ class ClientController extends Controller
         if($req->input('deals')):
             $client->deals()->attach($req->input('deals'));
         endif;
-        $client->save();
+            $client->save();
         return redirect()->route('clients.show_clients')->with('success','Сообщение было добавленно');
 
 

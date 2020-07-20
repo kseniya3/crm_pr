@@ -22,10 +22,10 @@ class DealController extends Controller
      */
     public function index(Deal $deal)
     {
-       return view('deal.index',
-           ['items'=>$deal->paginate(6)],
-           ['users'=>User::get()]
-       );
+        return view('deal.index',
+            ['items'=>$deal->paginate(6)],
+            ['users'=>User::get()]
+        );
     }
 
     /**

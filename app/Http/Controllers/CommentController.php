@@ -78,7 +78,7 @@ class CommentController extends Controller
 
         return view('Comment.index',
             ['deal'=>$deal,
-             'comments'=>$comments],
+            'comments'=>$comments],
             ['users'=>$user]
 
         );

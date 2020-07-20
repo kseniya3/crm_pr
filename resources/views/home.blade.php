@@ -14,12 +14,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
                     <a href="{{route('deals.index')}}">Deal</a>
                     <a href="{{route('clients.show_clients')}}">Client</a>
                     <a href="{{route('users.show_user')}}">User</a>
                     {{ __('You are logged in!') }}
-                        <div><example-component></example-component></div>
+                    <!-- <div><firstMyComp></firstMyComp></div> -->
+                    <div><example-component></example-component></div>
                 </div>
             </div>
         </div>
