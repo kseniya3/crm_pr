@@ -8,6 +8,7 @@ use App\Models\Deal;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 
+
 class ClientController extends Controller
 {
 
