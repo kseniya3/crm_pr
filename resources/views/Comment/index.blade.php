@@ -13,7 +13,7 @@
                             <strong>Finish date:</strong> {{$deal->close_date}}<br>
                             <strong>Description:</strong> {{$deal->deal_descrip}}<br>
                             <strong>Deadline:</strong> {{$deal->deadline}}<br>
-                            <strong>Manager:</strong> {{$users->name}}<br>
+                            <strong>Manager:</strong> {{$users->name}} <br>
                             <strong>Client:</strong>
                             @foreach($deal->clients as $client )
                                 {{$client->second_name}}
@@ -74,10 +74,10 @@
                         @foreach($comments as $comment)
                         <tr>
                             <td>{{$comment->created_at}}</td>
-                            <td>{{$comment->user_id}}</td>
+                            <td>{{$comment->users->name}}</td>
                             <td>{{$comment->comment_text}}</td>
                             <td>{{$comment->commentsFile()->count()}}</td>
-                            <td class="table-buttons">
+                            <td>
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-outline-danger dropdown-toggle"
                                             data-toggle="dropdown" aria-hasopup="true" aria-expended="false">

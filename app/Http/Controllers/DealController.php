@@ -53,7 +53,7 @@ class DealController extends Controller
             'close_date' => 'required|date|after_or_equal:open_data',
             'deal_descrip' => 'max:255',
             'deadline' => 'required|date|after_or_equal:open_data',
-            'status' => 'required|max:255'
+            'status' => 'required|max:10'
         ]);
         $carbon = Carbon::now();
 
@@ -67,11 +67,16 @@ class DealController extends Controller
             'status' => $request->get('status')
         ]);
 
-//        $deal->comments()->create([
-//            'comment_text' => $request->get('comment'),
-//            'user_id' => $request->user()->id,
-//            'deal_id' => $deal->id
-//        ]);
+        $comment = $request->get('comment_text');
+
+        if($comment != NULL)
+        {
+            $deal->comments()->create([
+                'comment_text' => $comment,
+                'user_id' => $request->user()->id,
+                'deal_id' => $deal->id
+            ]);
+        }
 
         if($request->input('clients')):
             $deal->clients()->attach($request->input('clients'));
@@ -146,11 +151,11 @@ class DealController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'deal_name' => 'required',
+            'deal_name' => 'required|max:255',
             'close_date' => '',
             'deal_descrip' => 'max:255',
             'deadline' => 'required',
-            'status' => 'required|max:255'
+            'status' => 'required|max:10'
         ]);
         $deal = Deal::find($id);
 

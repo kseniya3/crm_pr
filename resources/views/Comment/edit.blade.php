@@ -113,7 +113,7 @@
                                     </form>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('comments.destroyFile', $commentFile->id) }}">Download</a>
+                                    <a href="{{ Storage::url($commentFile->file_path) }}" download>{{$commentFile->filename }}</a>
                                 </li>
                             </ul>
                         </div>

@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="col-xs-12" id='dealVue'>
+    <div class="col-xs-12" >
         <div class="box">
             <div class="box-header">
                 <a href="{{route('deals.create')}}" class="btn btn-outline-success">Add deal</a>
@@ -92,6 +92,4 @@
     </div>
 
 @endsection
-@push('js')
-    <script src="{{asset('js/app.js')}}"></script>
-@endpush
+

@@ -19,25 +19,6 @@ class CommentController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -96,12 +77,6 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         $deal = Deal::find($comment->deal_id);
         $commentFile = $comment->commentsFile;
-        //$deal = $comment->deals();
-        //dd($deal);
-
-        //dd($deal->deal_name);
-        //$comment = Comment::find($id);
-        //$commentFile = $comment->commentsFile;
 
         return view('Comment.edit',
             ['deal'=>$deal],
@@ -142,22 +117,6 @@ class CommentController extends Controller
         $comment->delete();
 
         return redirect()->back();
-    }
-
-    public function updateFile(Request $request, $id)
-    {
-        $comment = Comment::find($id);
-        $path = $request->file('file_path');//->store('uploads', 'public');
-
-        dd($path);
-
-//        $comment->commentsFile()->create([
-//            'filename' => $request->get('filename'),
-//            'file_path' => $path,
-//            'comment_id' => $comment->id
-//        ]);
-//        $comment->save();
-//        return redirect()->back();
     }
 
     public function storeFile(Request $request)
