@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\User;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Validator;
 class DealController extends Controller
 {
     public function __construct()
@@ -46,16 +46,29 @@ class DealController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    protected function validator(array $data,$str_Carbon)
+    {
+        return Validator::make($data,[
+            'deal_name' => 'required|unique:deals,deal_name|max:30',
+            'close_date' => 'after_or_equal:'.$str_Carbon,
+            'deal_descrip' => 'max:255',
+            'deadline' => 'required|date|after_or_equal:'.$str_Carbon,
+            'status' => 'required|max:255'
+        ],['close_date.after_or_equal'=>'The closing date cannot be earlier than the opening date',
+        'deadline.after_or_equal'=>'The deadline date cannot be earlier than the opening date',]);
+    }
+
     public function store(Request $request)
     {
-        $request->validate([
-            'deal_name' => 'required|unique:deals,deal_name|max:255',
-            'close_date' => 'required|date|after_or_equal:open_data',
-            'deal_descrip' => 'max:255',
-            'deadline' => 'required|date|after_or_equal:open_data',
-            'status' => 'required|max:255'
-        ]);
         $carbon = Carbon::now();
+        $str_Carbon=(String)$carbon;
+        $validate=self::validator($request->all(),$str_Carbon);
+        if($validate->fails()){
+            /* dd($validate->errors()); */
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
+        
 
         $deal = Deal::create([
             'deal_name' => $request->get('deal_name'),
@@ -143,17 +156,27 @@ class DealController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    protected function up_validator(array $data,$str_Carbon)
+    {
+        return Validator::make($data,[
+            'deal_name' => 'required|max:30',
+            'close_date' => 'after_or_equal:'.$str_Carbon,
+            'deal_descrip' => 'max:255',
+            'deadline' => 'required|date|after_or_equal:'.$str_Carbon,
+            'status' => 'required|max:255'
+        ],['close_date.after_or_equal'=>'The closing date cannot be earlier than the opening date',
+        'deadline.after_or_equal'=>'The deadline date cannot be earlier than the opening date',]);
+    }
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'deal_name' => 'required',
-            'close_date' => '',
-            'deal_descrip' => 'max:255',
-            'deadline' => 'required',
-            'status' => 'required|max:255'
-        ]);
+        
         $deal = Deal::find($id);
-
+        $validate=self::up_validator($request->all(),(string)$deal->open_date);
+        if($validate->fails()){
+            /* dd($validate->errors()); */
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
         $deal->clients()->detach();
         if($request->input('clients')):
             $deal->clients()->attach($request->input('clients'));

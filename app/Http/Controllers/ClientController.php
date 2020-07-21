@@ -25,11 +25,11 @@ class ClientController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data,[
-            'second_name' => ['required','string','min:2','max:30'],
-            'first_name' => ['required','string','min:2','max:30'],
-            'middle_name' => ['required','string','min:2','max:30'],
+            'second_name' => ['required','string','min:2','max:30','alpha'],
+            'first_name' => ['required','string','min:2','max:30','alpha'],
+            'middle_name' => ['required','string','min:2','max:30','alpha'],
             'contacts_telephone' => ['unique:clients','required','string','min:11','numeric'],
-            'contacts_email' => ['unique:clients','required','string','max:30'],
+            'contacts_email' => ['unique:clients','required','string','max:30','email'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
         ]/* ,[ 'second_name.required'=>'Поле имя не заполнено',] */);
@@ -37,11 +37,11 @@ class ClientController extends Controller
     protected function validator_for_up(array $data)
     {
         return Validator::make($data,[
-            'second_name' => ['required','string','min:2','max:30'],
-            'first_name' => ['required','string','min:2','max:30'],
-            'middle_name' => ['required','string','min:2','max:30'],
+            'second_name' => ['required','string','min:2','max:30','alpha'],
+            'first_name' => ['required','string','min:2','max:30','alpha'],
+            'middle_name' => ['required','string','min:2','max:30'],'alpha',
             'contacts_telephone' => [/* 'unique:clients', */'required','string','min:11','numeric'],
-            'contacts_email' => [/* 'unique:clients', */'required','string','max:30'],
+            'contacts_email' => [/* 'unique:clients', */'required','string','max:30','email'],
             'description' => ['max:500'],
             'company_name' => ['required','string','max:30'],
         ]/* ,[ 'second_name.required'=>'Поле имя не заполнено',] */);
