@@ -59,19 +59,19 @@ class DealController extends Controller
 
         $deal = Deal::create([
             'deal_name' => $request->get('deal_name'),
-           'open_date' => $carbon,
-           'close_date' => $request->get('close_date'),
-           'deal_descrip' => $request->get('deal_descrip'),
+            'open_date' => $carbon,
+            'close_date' => $request->get('close_date'),
+            'deal_descrip' => $request->get('deal_descrip'),
             'deadline' => $request->get('deadline'),
             'user_id' => $request->user()->id,
             'status' => $request->get('status')
         ]);
 
-        $deal->comments()->create([
-            'comment_text' => $request->get('comment'),
-            'user_id' => $request->user()->id,
-            'deal_id' => $deal->id
-        ]);
+//        $deal->comments()->create([
+//            'comment_text' => $request->get('comment'),
+//            'user_id' => $request->user()->id,
+//            'deal_id' => $deal->id
+//        ]);
 
         if($request->input('clients')):
             $deal->clients()->attach($request->input('clients'));
@@ -132,8 +132,7 @@ class DealController extends Controller
         return view('deal.edit',
             ['deal'=>$deal,
                 'clients'=> Client::get()],
-            ['user'=>$user],
-            //['clients'=> Client::get()]
+            ['user'=>$user]
         );
     }
 

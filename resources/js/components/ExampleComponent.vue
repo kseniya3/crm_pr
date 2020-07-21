@@ -10,7 +10,6 @@
                         I'm an example ct.
                     </div>
                     <div class="card-body">
-                        <firsMyComp></firsMyComp>
                     </div>
                 </div>
             </div>
