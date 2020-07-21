@@ -14,6 +14,6 @@ class Comments_files extends Model
 
     public function fileCom()
     {
-        return $this->belongsTo('App\Models\Comment');
+        return $this->belongsTo('App\Models\Comment','comment_id', 'id');
     }
 }

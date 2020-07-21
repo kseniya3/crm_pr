@@ -17,7 +17,7 @@ class CommentsFiles extends Migration
             $table->id();
             $table->string('filename');
             $table->string('file_path');
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+            $table->foreign('comment_id')->references('id')->on('comments');
             $table->bigInteger('comment_id')->unsigned();
             $table->timestamps();
         });
