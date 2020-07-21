@@ -18,39 +18,26 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('deal-comp', require('./components/DealComponent.vue').default);
 
 const v = new Vue({
     el: '#vue-id',
 });
 
-<<<<<<< HEAD
+const vd = new Vue({
+    el: '#dealVue',
+});
 
-=======
-Vue.component('dealComponent', require('./components/dealComponent.vue').default);
 
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-// const app = new Vue({
-//     el: '#app',
-// });
->>>>>>> 561402a714fcb794a25d8e0ac6806109427ec0d1
+ */ //import DealTable from "./components/DealTableComponent"
 
 //import Deal from "./components/DealComponent"
 //import DealTable from "./components/DealTableComponent"
-
-Vue.component('Deal', require('./components/DealComponent.vue').default);
 //Vue.component('DealTable', require('./components/DealTableComponent.vue').default);
 //Vue.component('DealTableComponent', DealTable);
-
-const dealVue = new Vue({
-    el: '#deal_vue',
-});
-
-const dv = new Vue({
-    el: '#dealId',
-});

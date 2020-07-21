@@ -59,9 +59,9 @@ class DealController extends Controller
 
         $deal = Deal::create([
             'deal_name' => $request->get('deal_name'),
-           'open_date' => $carbon,
-           'close_date' => $request->get('close_date'),
-           'deal_descrip' => $request->get('deal_descrip'),
+            'open_date' => $carbon,
+            'close_date' => $request->get('close_date'),
+            'deal_descrip' => $request->get('deal_descrip'),
             'deadline' => $request->get('deadline'),
             'user_id' => $request->user()->id,
             'status' => $request->get('status')
