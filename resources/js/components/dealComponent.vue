@@ -1,9 +1,4 @@
 <template>
-
-
-
-
-
         <div class="box-body">
             <div class="row">
                 <div class="col-sm-12">
@@ -31,7 +26,8 @@
                                 <td>{{url.close_date}}</td>
                                 <td>{{url.deal_descrip}}</td>
                                 <td>{{url.deadline}}</td>
-                                <td v-for="user in users" :key="user.id" ></td>
+                                <td></td>
+                                <!-- <td v-for="user in users" :key="user.id" ></td> -->
                                 <td></td>
                                 <td></td>
                                 <td>{{url.status}}</td>

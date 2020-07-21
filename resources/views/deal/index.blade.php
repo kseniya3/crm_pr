@@ -20,7 +20,7 @@
             </div>
 
             <div>
-                <deal-comp :urldata="{{json_encode($items)}}" :userss="{{json_encode($users)}}"></deal-comp>
+                <deal-comp :urldata="{{json_encode($items)}}"></deal-comp>
             </div>
 
             <div class="box-body">
