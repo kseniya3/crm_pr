@@ -16,6 +16,10 @@ class Client extends Model
         'company_name',
         'user_id',
     ];
+    public function users()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
 
     public function deals()
     {
@@ -23,5 +27,13 @@ class Client extends Model
         return $this->belongsToMany('App\Models\Deal', 'clients_has_deals','client_id','deal_id');
     }
 
+    public function findClient($id){
+        $items=Client::all();
+        foreach($items as $item){
+            if($item->user_id==$id){
+                return $item->id;
+            }
+        }
+    }
 
 }

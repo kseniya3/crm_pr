@@ -18,3 +18,4 @@ yarn-error.log
 *.iml
 out
 gen
+resources/views/temp.php

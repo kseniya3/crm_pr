@@ -24,7 +24,7 @@ class Clients extends Migration
             $table->text('description')->nullable();;
             $table->string('company_name');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
         });
     }
 

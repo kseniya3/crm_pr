@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\Client;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,8 +19,8 @@ class UserController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data,[
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:30','alpha','unique:users'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string', 'max:15'],
 
@@ -28,8 +29,8 @@ class UserController extends Controller
     protected function update_validator(array $data)
     {
         return Validator::make($data,[
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'name' => ['required', 'string', 'max:30','alpha'],
+            'email' => ['required', 'string', 'email', 'max:30',],
             'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string', 'max:15'],
 
@@ -63,7 +64,25 @@ class UserController extends Controller
     }
     public function Del($id)
     {
-        User::find($id)->delete();
+        $user=User::find($id);
+        $client=$user->clients;
+        foreach($client as $cl){
+            $cl->user_id=null;
+            $cl->save();
+        }
+        $deal=$user->deals;
+        foreach($deal as $dl){
+            $dl->user_id=null;
+            $dl->save();
+        }
+        $comment=$user->comments;
+        foreach($comment as $com){
+            $com->user_id=null;
+            $com->save();
+        }
+        
+        
+        $user->delete();
         return redirect()->route('users.show_user')->with('success','Сообщение было удалено');
     }
     public function updateUserStr($id){
