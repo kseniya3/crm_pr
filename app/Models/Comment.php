@@ -21,6 +21,7 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Deal');
     }
+    
 
     public function commentsFile()
     {

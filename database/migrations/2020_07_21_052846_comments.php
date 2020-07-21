@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDealsTable extends Migration
+class Comments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateDealsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deals', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('deal_name')->unique();
-            $table->dateTime('open_date');
-            $table->dateTime('close_date')->nullable();
-            $table->string('deal_descrip')->nullable();
-            $table->dateTime('deadline');
+            $table->string('comment_text');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('user_id')->unsigned();
-            $table->string('status');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('deal_id')->references('id')->on('deals');
+            $table->bigInteger('deal_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreateDealsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deals');
+        Schema::dropIfExists('comments');
     }
 }

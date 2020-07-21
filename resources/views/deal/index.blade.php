@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="col-xs-12" >
+    <div class="col-xs-12" id='vue-id'>
         <div class="box">
             <div class="box-header">
                 <a href="{{route('deals.create')}}" class="btn btn-outline-success">Add deal</a>
@@ -20,7 +20,7 @@
             </div>
 
             <div>
-                <deal-comp></deal-comp>
+                <deal-comp :urldata="{{json_encode($items)}}" :userss="{{json_encode($users)}}"></deal-comp>
             </div>
 
             <div class="box-body">
