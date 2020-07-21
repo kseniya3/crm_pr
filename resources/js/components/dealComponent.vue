@@ -19,6 +19,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr v-for="url in urldata.data"  :key="url.id">
+                                <td>{{url.id}}</td>
+                                <td>{{url.deal_name}}</td>
+                                <td>{{url.open_date}}</td>
+                                <td>{{url.close_date}}</td>
+                                <td>{{url.deal_descrip}}</td>
+                                <td>{{url.deadline}}</td>
+                                <td v-for="user in users" :key="user.id" ></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{url.status}}</td>
+                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -27,7 +40,20 @@
 </template>
 
 <script>
-
+    export default{
+        props:[
+            'urldata',
+            'userss'
+        ],
+        mounted(){
+            this.update();
+        },
+        methods:{
+            update: function(){
+                console.log(this.urldata);
+            }
+        }
+    }
 </script>
 
 <style scoped>

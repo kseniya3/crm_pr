@@ -20,14 +20,14 @@ class DealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Deal $deal)
+    public function index()
     {
+        // dd(json_encode($deal));
         return view('deal.index',
-            ['items'=>$deal->paginate(6)],
-            ['users'=>User::get()]
+        ['items'=>Deal::paginate(6),
+            'users'=>User::get()]
         );
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -36,27 +36,27 @@ class DealController extends Controller
     public function create()
     {
         return view('deal.creat',
-            ['clients'=> Client::get()]
-        );
-    }
+        ['clients'=> Client::get()]
+    );
+}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'deal_name' => 'required|unique:deals,deal_name|max:255',
-            'close_date' => 'required|date|after_or_equal:open_data',
-            'deal_descrip' => 'max:255',
-            'deadline' => 'required|date|after_or_equal:open_data',
-            'status' => 'required|max:255'
+/**
+ * Store a newly created resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ */
+public function store(Request $request)
+{
+    $request->validate([
+        'deal_name' => 'required|unique:deals,deal_name|max:255',
+        'close_date' => 'required|date|after_or_equal:open_data',
+        'deal_descrip' => 'max:255',
+        'deadline' => 'required|date|after_or_equal:open_data',
+        'status' => 'required|max:255'
         ]);
         $carbon = Carbon::now();
-
+        
         $deal = Deal::create([
             'deal_name' => $request->get('deal_name'),
             'open_date' => $carbon,
@@ -65,8 +65,7 @@ class DealController extends Controller
             'deadline' => $request->get('deadline'),
             'user_id' => $request->user()->id,
             'status' => $request->get('status')
-        ]);
-
+            ]);
 //        $deal->comments()->create([
 //            'comment_text' => $request->get('comment'),
 //            'user_id' => $request->user()->id,

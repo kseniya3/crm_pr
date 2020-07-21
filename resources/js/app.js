@@ -25,9 +25,7 @@ const v = new Vue({
     el: '#vue-id',
 });
 
-const vd = new Vue({
-    el: '#dealVue',
-});
+
 
 
 
