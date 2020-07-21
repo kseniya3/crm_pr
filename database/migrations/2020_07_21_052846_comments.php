@@ -17,7 +17,7 @@ class Comments extends Migration
             $table->id();
             $table->string('comment_text');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('deal_id')->references('id')->on('deals')->onDelete('cascade');
             $table->bigInteger('deal_id')->unsigned();
             $table->timestamps();
