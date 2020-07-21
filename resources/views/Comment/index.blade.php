@@ -43,8 +43,8 @@
                                 <textarea name="comment_text" class="form-control"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="exampleInputFile">Name input</label>
+                        <div class="form-group" style="display:flex;">
+                            <label class="col-sm-2 control-label" for="exampleInputFile">File name:</label>
                             <input type="text" name="filename" class="form-control" value="{{old('filename')}}">
                             <input type="file" name="file_path" id="filename" id="exampleInputFile">
                         </div>
@@ -92,7 +92,7 @@
                                             </form>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="">Edit</a>
+                                            <a class="dropdown-item" href="{{route('comments.edit', $comment->id)}}">Edit</a>
                                         </li>
                                     </ul>
                                 </div>

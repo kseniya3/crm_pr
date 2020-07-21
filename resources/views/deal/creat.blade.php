@@ -49,17 +49,6 @@
                     @endforeach
             </div>
             <div class="form-group">
-                <label for="post-title">comment</label>
-                <div class="col-sm-12">
-                    <textarea name="comment" class="form-control"></textarea>
-                </div>
-            </div>
-            <div class="form-group" style="display:flex;">
-                <label class="col-sm-2 control-label" for="exampleInputFile">Name file</label>
-                <input type="text" name="filename" class="form-control" value="{{old('filename')}}">
-                <input type="file" name="file_path" id="filename" id="exampleInputFile">
-            </div>
-            <div class="form-group">
                 <label for="post-title">status</label>
                 <select name="status" class="form-control" value="{{old('status')}}">
                     <option >open</option>
