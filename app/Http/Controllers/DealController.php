@@ -21,11 +21,9 @@ class DealController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // dd(json_encode($deal));
+    {        
         return view('deal.index',
-        ['items'=>Deal::paginate(6),
-            'users'=>User::get()]
+        ['items'=>Deal::with('clients','user')->paginate(6)]
         );
     }
     /**

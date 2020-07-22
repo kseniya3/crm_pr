@@ -19,8 +19,8 @@ class UserController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data,[
-            'name' => ['required', 'string', 'max:30','alpha','unique:users'],
-            'email' => ['required', 'string', 'email', 'max:30', 'unique:users'],
+            'name' => ['required', 'string', 'max:30','alpha','unique:user'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:user'],
             'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string', 'max:15'],
 
@@ -39,6 +39,7 @@ class UserController extends Controller
 
     protected function Show()
     {
+        
         $items = User::all();
         return view('User.user_show', ['items'=>$items]);
     }
@@ -96,7 +97,6 @@ class UserController extends Controller
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
-
         $user=User::find($id);
 
             $user->name = $req->input('name');
@@ -115,7 +115,7 @@ class UserController extends Controller
         }
 
         $user=new User;
-
+        
             $user->name = $req->input('name');
             $user->email = $req->input('email');
             $user->password = Hash::make($req->input('password'));

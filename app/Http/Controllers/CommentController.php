@@ -55,13 +55,13 @@ class CommentController extends Controller
     public function show($id)
     {
         $deal = Deal::find($id);
-        $user = User::find($deal->user_id);
         $comments = $deal->comments()->paginate(5);
+
+        // dd( $deal);
 
         return view('Comment.index',
             ['deal'=>$deal,
-            'comments'=>$comments],
-            ['users'=>$user]
+            'comments'=>$comments]
 
         );
     }

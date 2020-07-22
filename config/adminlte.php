@@ -268,7 +268,7 @@ return [
         ],
         [
             'text' => 'Users',
-            'url'  => '/users',
+            'url'  => '/users/show',
             'icon'  => 'fa fa-fw fa-user',
             'can'=>'isAdmin',
             

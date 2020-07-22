@@ -15,7 +15,7 @@
                                 <th scope="col">Client</th>
                                 <th scope="col">Comment</th>
                                 <th scope="col">Status</th>
-                                <th></th>
+                                <!-- <th></th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -26,11 +26,18 @@
                                 <td>{{url.close_date}}</td>
                                 <td>{{url.deal_descrip}}</td>
                                 <td>{{url.deadline}}</td>
-                                <td></td>
-                                <!-- <td v-for="user in users" :key="user.id" ></td> -->
-                                <td></td>
-                                <td></td>
+                                <td>{{url.user.name}}</td>
+                                <!-- <td></td> -->
+                                <td>
+                                    <div v-for="client in url.clients" :key="client.id">{{client.second_name}}, </div>
+                                </td>
+                                <td><a :href="'/comments/'+url.id">Comment</a></td>
                                 <td>{{url.status}}</td>
+                                <td class="table-buttons" style="border:0;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-outline-danger">Delete</button>
+                                    </div>
+                                </td>
                             </tr>
                             
                         </tbody>
@@ -42,10 +49,10 @@
 
 <script>
     export default{
-        props:[
-            'urldata',
-            'userss'
-        ],
+        // props:['urldata'],
+        props:{
+            urldata: Array,
+        },
         mounted(){
             this.update();
         },

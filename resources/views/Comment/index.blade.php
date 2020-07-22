@@ -13,7 +13,7 @@
                             <strong>Finish date:</strong> {{$deal->close_date}}<br>
                             <strong>Description:</strong> {{$deal->deal_descrip}}<br>
                             <strong>Deadline:</strong> {{$deal->deadline}}<br>
-                            <strong>Manager:</strong> {{$users->name}} <br>
+                            <strong>Manager:</strong> {{$deal->user->name}} <br>
                             <strong>Client:</strong>
                             @foreach($deal->clients as $client )
                                 {{$client->second_name}}

@@ -1986,8 +1986,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['urldata', 'userss'],
+  // props:['urldata'],
+  props: {
+    urldata: Array
+  },
   mounted: function mounted() {
     this.update();
   },
@@ -37666,13 +37676,27 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(url.deadline))]),
                   _vm._v(" "),
-                  _c("td"),
+                  _c("td", [_vm._v(_vm._s(url.user.name))]),
                   _vm._v(" "),
-                  _c("td"),
+                  _c(
+                    "td",
+                    _vm._l(url.clients, function(client) {
+                      return _c("div", { key: client.id }, [
+                        _vm._v(_vm._s(client.second_name) + ", ")
+                      ])
+                    }),
+                    0
+                  ),
                   _vm._v(" "),
-                  _c("td"),
+                  _c("td", [
+                    _c("a", { attrs: { href: "/comments/" + url.id } }, [
+                      _vm._v("Comment")
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(url.status))])
+                  _c("td", [_vm._v(_vm._s(url.status))]),
+                  _vm._v(" "),
+                  _vm._m(1, true)
                 ])
               }),
               0
@@ -37708,11 +37732,25 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th")
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "td",
+      { staticClass: "table-buttons", staticStyle: { border: "0" } },
+      [
+        _c("div", { staticClass: "input-group-btn" }, [
+          _c("button", { staticClass: "btn btn-outline-danger" }, [
+            _vm._v("Delete")
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
