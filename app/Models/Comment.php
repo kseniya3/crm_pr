@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\CommentFileDeleteTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use CommentFileDeleteTrait;
+
     protected $fillable = [
         'comment_text',
         'user_id',
@@ -21,7 +24,6 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Deal');
     }
-    
 
     public function commentsFile()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comments_files;
+use App\Traits\CommentFileDeleteTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,11 +13,7 @@ class CommentFilsController extends Controller
 {
     public function destroy($id)
     {
-        $commentFile = Comments_files::find($id);
-        Storage::disk('public')->delete($commentFile->file_path);
-        $comment_id = $commentFile->comment_id;
-        $commentFile->delete();
-
+        $comment_id = CommentFileDeleteTrait::deleteFile($id);
         return redirect()->route('comments.edit', ['id' => $comment_id]);
     }
 }

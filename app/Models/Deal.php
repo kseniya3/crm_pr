@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\CommentFileDeleteTrait;
 use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Builder;
 
 class Deal extends Model
 {
+    use CommentFileDeleteTrait;
+
     protected $fillable = [
         'deal_name',
         'open_date',
@@ -18,7 +21,7 @@ class Deal extends Model
         'status'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }

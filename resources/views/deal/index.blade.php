@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-
-    <div class="col-xs-12" id='vue-id'>
+    <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
                 <a href="{{route('deals.create')}}" class="btn btn-outline-success">Add deal</a>
@@ -17,10 +16,6 @@
                         {{ session()->get('success') }}
                     </div>
                 @endif
-            </div>
-
-            <div>
-                <deal-comp :urldata="{{json_encode($items)}}" :userss="{{json_encode($users)}}"></deal-comp>
             </div>
 
             <div class="box-body">
@@ -43,6 +38,7 @@
                             </tr>
                             </thead>
                             <tbody>
+
                             @foreach($items as $item)
                                 <tr class="lead">
                                     <td scope="row">{{ $item->id }}</td>
@@ -51,11 +47,8 @@
                                     <td>{{ $item->close_date }}</td>
                                     <td>{{ $item->deal_descrip }}</td>
                                     <td>{{ $item->deadline }}</td>
-                                    @foreach($users as $user)
-                                        @if($item->user_id === $user->id)
-                                            <td>{{ $user->name }}</td>
-                                        @endif
-                                    @endforeach
+                                    <td>{{ $item->user->name }}</td>
+
                                     <td>{{ $item->clients()->pluck('second_name')->implode(', ')}}</td>
                                     <td> <a href="{{route('comments.show', $item->id)}}">Comment</a></td>
                                     <td>{{ $item->status }}</td>
@@ -90,6 +83,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 

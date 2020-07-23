@@ -36,7 +36,7 @@
                                 <td></td>
                                 <td>{{url.status}}</td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>

@@ -271,7 +271,7 @@ return [
             'url'  => '/users',
             'icon'  => 'fa fa-fw fa-user',
             'can'=>'isAdmin',
-            
+
         ],
     ],
 
