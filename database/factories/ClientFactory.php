@@ -17,22 +17,10 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class,function (Faker $faker) {
-    $array=['admin','manager'];
-    return [
-        'name' => Str::random(10),
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => bcrypt('12345678'), // password
-        'role' => Arr::random($array),
-        'remember_token' => Str::random(10),
-    ];
-});
 /* $factory->define(User::class,function (Faker $faker) {
-    
     return [
         'name' => 'admin',
-        'email' => "fwt_ilia@mail.ru",
+        'email' => 'fwt_ilia@mail.ru',
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password
         'role' => 'admin',
@@ -50,16 +38,17 @@ $factory->define(User::class,function (Faker $faker) {
             'remember_token' => Str::random(10),
         ];
 });
-
-$factory->defineAs(App\Models\Client::class, 'admin',function(Faker $faker){
+ */
+$factory->define(App\Models\Client::class,function(Faker $faker){
+    $faker=\Faker\Factory::create('ru_RU');
     return [
-        'second_name' => 'ilyas',
-    'first_name' => 'laige',
-    'middle_name' => 'ilya',
+    'second_name' => $faker->lastName,
+    'first_name' => $faker->firstName,
+    'middle_name' => 'Иванович',
     'contacts_telephone' => '89131799877',
-    'contacts_email' => 'fwt_ilka@mail.ru',
-    'description' => 'Классный и милый парень заводной пацн и просто молодец',
+    'contacts_email' => $faker->unique()->safeEmail,
+    'description' => $faker->sentence(4),
     'company_name' => 'sfu',    
     ];
     
-}); */
+}); 
