@@ -8,6 +8,7 @@ use App\Models\Deal;
 use App\User;
 use App\Models\Comments_files;
 use Illuminate\Http\Request;
+use App\Traits\CommentFileDeleteTrait;
 
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
@@ -34,13 +35,18 @@ class CommentController extends Controller
             'deal_id' => $request->get('deal_id')
         ]);
 
-        $path = $request->file('file_path')->store('uploads', 'public');
 
-        $comment->commentsFile()->create([
-            'filename' => $request->get('filename'),
-            'file_path' => $path,
-            'comment_id' => $comment->id
-        ]);
+        if($request->get('filename') != NULL)
+        {
+            $path = $request->file('file_path')->store('uploads', 'public');
+
+            $comment->commentsFile()->create([
+                'filename' => $request->get('filename'),
+                'file_path' => $path,
+                'comment_id' => $comment->id
+            ]);
+        }
+
         $comment->save();
 
         return redirect()->back();
@@ -61,8 +67,7 @@ class CommentController extends Controller
 
         return view('Comment.index',
             ['deal'=>$deal,
-            'comments'=>$comments]
-
+                'comments'=>$comments]
         );
     }
 
@@ -113,6 +118,11 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::find($id);
+        $files = $comment->commentsFile;
+        foreach ($files as $file)
+        {
+            CommentFileDeleteTrait::deleteFile($file->id);
+        }
         $comment->commentsFile()->delete();
         $comment->delete();
 
