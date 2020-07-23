@@ -7,8 +7,7 @@
 @endsection
 
 @section('content')
-
-    <div class="col-xs-12" id='vue-id'>
+    <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
                 <a href="{{route('deals.create')}}" class="btn btn-outline-success">Add deal</a>
@@ -44,7 +43,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            
                             @foreach($items as $item)
                                 <tr class="lead">
                                     <td scope="row">{{ $item->id }}</td>
@@ -89,7 +87,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 @push('js')
     <script src="{{asset('js/app.js')}}"></script>

@@ -20,7 +20,19 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('deal-comp', require('./components/dealComponent.vue').default);
+Vue.component('comment-vue', require('./components/CommentComponent.vue').default);
 
 const v = new Vue({
     el: '#vue-id',
+<<<<<<< HEAD
 });
+=======
+});
+
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+>>>>>>> d2cd08ec3f3373803f1ef3a33ff90d922a14b191

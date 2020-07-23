@@ -27,7 +27,6 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-
 Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/', 'DealController@index')->name('index');
     Route::get('/create', 'DealController@create')->name('create');
@@ -38,6 +37,10 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::delete('/{id}', 'DealController@destroy')->name('destroy');
     Route::post('/find', 'DealController@FindDeal')->name('find_deal');
 });
+//
+//Route::group(['prefix'=>'/reports','as'=>'reports.'],function(){
+//    Route::get('/{id}', 'ReportController@show')->name('show');
+//});
 
 Route::group(['prefix'=>'/comments','as'=>'comments.'],function(){
     Route::get('/{id}', 'CommentController@show')->name('show');
@@ -66,6 +69,8 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
     Route::post('/find', 'ClientController@FindClient')->name('find_client');
     Route::get('/','ClientController@OpenCreate')->name('client-add-form');
 
+    Route::get('/report/{id}', 'ReportController@show')->name('show_report');
+    Route::get('/report/deal/{id}', 'ReportController@generator')->name('generator');
 
 });
 
