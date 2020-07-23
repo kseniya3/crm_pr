@@ -209,6 +209,9 @@ class DealController extends Controller
         $deal->clients()->detach();
         $deal->delete();
 
-        return redirect('/deals')->with('success', 'Contact deleted!');
+        return response()->json([
+            'status'=>'success',
+            'msg'=> $id
+            ]);
     }
 }

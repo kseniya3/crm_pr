@@ -19,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="url in urldata.data"  :key="url.id">
+                            <tr v-for="url in arr.data"  :key="url.id">
                                 <td>{{url.id}}</td>
                                 <td>{{url.deal_name}}</td>
                                 <td>{{url.open_date}}</td>
@@ -31,12 +31,20 @@
                                 <td>
                                     <div v-for="client in url.clients" :key="client.id">{{client.second_name}}, </div>
                                 </td>
-                                <td><a :href="'/comments/'+url.id">Comment</a></td>
+                                <td><a :href="'/comments/'+url.id">Comment
+                                </a></td>
                                 <td>{{url.status}}</td>
                                 <td class="table-buttons" style="border:0;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-outline-danger">Delete</button>
+                                        <button class="btn btn-danger" v-on:click="delete_deal(url.id)">
+                                            Delete
+                                        </button>
                                     </div>
+                                </td>
+                                <td class="table-buttons">
+                                    <a :href="'/deals/'+url.id + '/edit/'" class="btn btn-outline-success" >
+                                        Edit
+                                    </a>
                                 </td>
                             </tr>
                             
@@ -48,10 +56,16 @@
 </template>
 
 <script>
+
+import axios from 'axios';
     export default{
-        // props:['urldata'],
-        props:{
-            urldata: Array,
+        
+        props:[
+            'urldata'
+        ],
+        data () {return{
+            arr:this.urldata
+            }
         },
         mounted(){
             this.update();
@@ -59,6 +73,12 @@
         methods:{
             update: function(){
                 console.log(this.urldata);
+            },
+            delete_deal: function(index){
+                    axios.delete(`/deals/${index}`).then((response)=>(console.log(index)))
+            },
+            open_comment: function(index){
+                
             }
         }
     }

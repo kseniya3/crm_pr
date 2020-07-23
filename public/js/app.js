@@ -1944,6 +1944,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1993,10 +1995,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // props:['urldata'],
-  props: {
-    urldata: Array
+  props: ['urldata'],
+  data: function data() {
+    return {
+      arr: this.urldata
+    };
   },
   mounted: function mounted() {
     this.update();
@@ -2004,7 +2017,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     update: function update() {
       console.log(this.urldata);
-    }
+    },
+    delete_deal: function delete_deal(index) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/deals/".concat(index)).then(function (response) {
+        return console.log(index);
+      });
+    },
+    open_comment: function open_comment(index) {}
   }
 });
 
@@ -37662,7 +37681,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.urldata.data, function(url) {
+              _vm._l(_vm.arr.data, function(url) {
                 return _c("tr", { key: url.id }, [
                   _c("td", [_vm._v(_vm._s(url.id))]),
                   _vm._v(" "),
@@ -37690,13 +37709,54 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _c("a", { attrs: { href: "/comments/" + url.id } }, [
-                      _vm._v("Comment")
+                      _vm._v("Comment\n                        ")
                     ])
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(url.status))]),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _c(
+                    "td",
+                    {
+                      staticClass: "table-buttons",
+                      staticStyle: { border: "0" }
+                    },
+                    [
+                      _c("div", { staticClass: "input-group-btn" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.delete_deal(url.id)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    Delete\n                                "
+                            )
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "table-buttons" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-outline-success",
+                        attrs: { href: "/deals/" + url.id + "/edit/" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Edit\n                            "
+                        )
+                      ]
+                    )
+                  ])
                 ])
               }),
               0
@@ -37735,22 +37795,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "td",
-      { staticClass: "table-buttons", staticStyle: { border: "0" } },
-      [
-        _c("div", { staticClass: "input-group-btn" }, [
-          _c("button", { staticClass: "btn btn-outline-danger" }, [
-            _vm._v("Delete")
-          ])
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -49951,16 +49995,6 @@ Vue.component('deal-comp', __webpack_require__(/*! ./components/dealComponent.vu
 var v = new Vue({
   el: '#vue-id'
 });
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-//import DealTable from "./components/DealTableComponent"
-//import Deal from "./components/DealComponent"
-//import DealTable from "./components/DealTableComponent"
-//Vue.component('DealTable', require('./components/DealTableComponent.vue').default);
-//Vue.component('DealTableComponent', DealTable);
 
 /***/ }),
 
