@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
             $deal->clients()->save(factory(App\Models\Client::class)->make());
         }); */
         
-        factory(App\User::class,5)->create()->each(function($user){
+        factory(App\User::class,100)->create()->each(function($user){
             $client=$user->clients()->save(factory(App\Models\Client::class)->make());
             $deal=$user->deals()->save(factory(App\Models\Deal::class)->make());
             /* $comment=$user->comments()->save(factory(App\Models\Comment::class)->make()); */
