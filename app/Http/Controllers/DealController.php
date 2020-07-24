@@ -54,10 +54,10 @@ class DealController extends Controller
     {
         return Validator::make($data,[
             'deal_name' => 'required|unique:deals,deal_name|max:30',
-            'close_date' => 'after_or_equal:'.$str_Carbon,
+            /* 'close_date' => 'after_or_equal:'.$str_Carbon, */
             'deal_descrip' => 'max:255',
             'deadline' => 'required|date|after_or_equal:'.$str_Carbon,
-            'status' => 'required|max:255'
+           /*  'status' => 'required|max:255' */
         ],['close_date.after_or_equal'=>'The closing date cannot be earlier than the opening date',
         'deadline.after_or_equal'=>'The deadline date cannot be earlier than the opening date',]);
     }
@@ -71,22 +71,22 @@ class DealController extends Controller
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
-
-        $deal = Deal::create([
-            'deal_name' => $request->get('deal_name'),
-            'open_date' => $carbon,
-            'close_date' => $request->get('close_date'),
-            'deal_descrip' => $request->get('deal_descrip'),
-            'deadline' => $request->get('deadline'),
-            'user_id' => $request->user()->id,
-            'status' => $request->get('status')
-        ]);
-
-        $comment = $request->get('comment_text');
         $date_close;
         if($request->get('status')!='open'){
             $date_close=Carbon::now();
         }
+        $deal = Deal::create([
+            'deal_name' => $request->get('deal_name'),
+            'open_date' => $carbon,
+            /* 'close_date' => $request->get('close_date'), */
+            'deal_descrip' => $request->get('deal_descrip'),
+            'deadline' => $request->get('deadline'),
+            'user_id' => $request->user()->id,
+            'status' => 'open'
+        ]);
+
+        $comment = $request->get('comment_text');
+        
         if($comment != NULL)
         {
             $deal->comments()->create([
@@ -184,10 +184,10 @@ class DealController extends Controller
     {
         return Validator::make($data,[
             'deal_name' => 'required|max:30',
-            'close_date' => 'after_or_equal:'.$str_Carbon,
+            /* 'close_date' => 'after_or_equal:'.$str_Carbon, */
             'deal_descrip' => 'max:255',
             'deadline' => 'required|date|after_or_equal:'.$str_Carbon,
-            'status' => 'required|max:255'
+            /* 'status' => 'required|max:255' */
         ],['close_date.after_or_equal'=>'The closing date cannot be earlier than the opening date',
         'deadline.after_or_equal'=>'The deadline date cannot be earlier than the opening date',]);
     }
@@ -200,21 +200,29 @@ class DealController extends Controller
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
+
+
         $deal->clients()->detach();
         if($request->input('clients')):
             $deal->clients()->attach($request->input('clients'));
         endif;
 
+
+        if($request->get('status')!='open'){
+            $date_close=Carbon::now();
+        }else{
+            $date_close=null;
+        }
+
+
         $deal->deal_name = $request->get('deal_name');
-        $deal->close_date = $request->get('close_date');
+        $deal->close_date = $date_close;
         $deal->deal_descrip = $request->get('deal_descrip');
         $deal->deadline = $request->get('deadline');
         //$deal->first_name = $request->get('user_id');
         $deal->status = $request->get('status');
-        $date_close;
-        if($request->get('status')!='open'){
-            $date_close=Carbon::now();
-        }
+        
+
         $deal->save();
 
         $cl = Client::where('id', $request->input('clients'))->firstOrFail();
