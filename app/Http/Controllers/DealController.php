@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ClientDealJob;
+use App\Mail\EmailClientHello;
 use App\Models\Client;
 use App\Models\Comment;
 use App\Traits\CommentFileDeleteTrait;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -26,7 +28,7 @@ class DealController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
+    {
         return view('deal.index',
         ['items'=>Deal::with('clients','user')->paginate(6)]
         );
@@ -97,12 +99,13 @@ class DealController extends Controller
             $deal->clients()->attach($request->input('clients'));
         endif;
 
-        $cl = Client::where('id', $request->input('clients'))->firstOrFail();
+        foreach ($deal->clients as $client)
+        {
+            Mail::to($client->contacts_email)->send(new EmailClientHello($client, $deal));
+        }
 
         if($deal)
         {
-            ClientDealJob::dispatch($cl, $deal)->delay(20);
-
             $deal->save();
             return redirect('/deals')->with(['success' => 'Успешно сохранено']);
         }else{
@@ -209,12 +212,13 @@ class DealController extends Controller
         //$deal->first_name = $request->get('user_id');
         $deal->status = $request->get('status');
 
-        $cl = Client::where('id', $request->input('clients'))->firstOrFail();
+        foreach ($deal->clients as $client)
+        {
+            Mail::to($client->contacts_email)->send(new EmailClientHello($client, $deal));
+        }
 
         if($deal)
         {
-            ClientDealJob::dispatch($cl, $deal)->delay(20);
-
             $deal->save();
             return redirect('/deals')->with(['success' => 'Успешно сохранено']);
         }else{
@@ -247,14 +251,11 @@ class DealController extends Controller
         $deal->clients()->detach();
         $deal->delete();
 
-<<<<<<< HEAD
         return response()->json([
             'status'=>'success',
             'msg'=> $id
             ]);
-=======
-        return redirect('/deals')->with(['success' => 'Успешно удалена']);
+        //return redirect('/deals')->with(['success' => 'Успешно удалена']);
 
->>>>>>> d2cd08ec3f3373803f1ef3a33ff90d922a14b191
     }
 }

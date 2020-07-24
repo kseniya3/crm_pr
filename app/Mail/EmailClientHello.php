@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Email extends Mailable
+class EmailClientHello extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -33,10 +33,10 @@ class Email extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.emailClientDeals',
+        return $this->view('mails.emailClientHello',
             ['client' => $this->client],
             ['deal' => $this->deal]
-        )->attach("public/word/DealFile/{$this->client->second_name}.docx");
+        );
     }
 
 

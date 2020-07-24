@@ -20,7 +20,7 @@ class Comment extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function deals()
+    public function deal()
     {
         return $this->belongsTo('App\Models\Deal');
     }
