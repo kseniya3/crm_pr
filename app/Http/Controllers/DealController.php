@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ClientDealJob;
 use App\Models\Client;
+use App\Models\Comment;
+use App\Traits\CommentFileDeleteTrait;
 use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+
+
 class DealController extends Controller
 {
     public function __construct()
@@ -66,7 +71,6 @@ class DealController extends Controller
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
-        
 
         $deal = Deal::create([
             'deal_name' => $request->get('deal_name'),
@@ -96,8 +100,17 @@ class DealController extends Controller
             $deal->clients()->attach($request->input('clients'));
         endif;
 
-        $deal->save();
-        return redirect('/deals')->with('success', 'Contact saved!');
+        $cl = Client::where('id', $request->input('clients'))->firstOrFail();
+
+        if($deal)
+        {
+            ClientDealJob::dispatch($cl, $deal)->delay(20);
+
+            $deal->save();
+            return redirect('/deals')->with(['success' => 'Успешно сохранено']);
+        }else{
+            return back()->withErrors(['msg' => 'Ошибка сохранения!'])->withInput();
+        }
 
     }
     protected function FindDeal(Request $req)
@@ -134,7 +147,11 @@ class DealController extends Controller
      */
     public function show($id)
     {
+        $deal = Deal::find($id);
 
+        return view('deal.show',
+            ['deal'=>$deal]
+        );
     }
 
     /**
@@ -176,7 +193,7 @@ class DealController extends Controller
     }
     public function update(Request $request, $id)
     {
-        
+
         $deal = Deal::find($id);
         $validate=self::up_validator($request->all(),(string)$deal->open_date);
         if($validate->fails()){
@@ -188,7 +205,6 @@ class DealController extends Controller
             $deal->clients()->attach($request->input('clients'));
         endif;
 
-        //$deal = Deal::find($id);
         $deal->deal_name = $request->get('deal_name');
         $deal->close_date = $request->get('close_date');
         $deal->deal_descrip = $request->get('deal_descrip');
@@ -201,7 +217,17 @@ class DealController extends Controller
         }
         $deal->save();
 
-        return redirect('/deals')->with('success', 'Contact updated!');
+        $cl = Client::where('id', $request->input('clients'))->firstOrFail();
+
+        if($deal)
+        {
+            ClientDealJob::dispatch($cl, $deal)->delay(20);
+
+            $deal->save();
+            return redirect('/deals')->with(['success' => 'Успешно сохранено']);
+        }else{
+            return back()->withErrors(['msg' => 'Ошибка сохранения!'])->withInput();
+        }
     }
 
     /**
@@ -213,9 +239,25 @@ class DealController extends Controller
     public function destroy($id)
     {
         $deal = Deal::find($id);
+        $comments = Comment::where('deal_id', $id)->get();
+
+        foreach ($comments as $comment)
+        {
+            $files = $comment->commentsFile;
+            foreach ($files as $file)
+            {
+                CommentFileDeleteTrait::deleteFile($file->id);
+            }
+            $comment->commentsFile()->delete();
+            $comment->delete();
+        }
+
         $deal->clients()->detach();
         $deal->delete();
 
-        return redirect('/deals')->with('success', 'Contact deleted!');
+        return response()->json([
+            'status'=>'success',
+            'msg'=> $id
+            ]);
     }
 }

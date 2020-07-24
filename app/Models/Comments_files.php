@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\CommentFileDeleteTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Comments_files extends Model
 {
+    use CommentFileDeleteTrait;
+
     protected $fillable = [
         'filename',
         'file_path',

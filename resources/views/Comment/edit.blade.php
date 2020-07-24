@@ -13,7 +13,7 @@
                         <strong>Finish date:</strong> {{$deal->close_date}}<br>
                         <strong>Description:</strong> {{$deal->deal_descrip}}<br>
                         <strong>Deadline:</strong> {{$deal->deadline}}<br>
-                        <strong>Manager:</strong> {{$deal->users->name}}<br>
+                        <strong>Manager:</strong> {{$deal->user->name}}<br>
                         <strong>Client:</strong>
                         @foreach($deal->clients as $client )
                             {{$client->second_name}}
@@ -36,7 +36,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{route('comments.update', $comments->id)}}">
+            <form method="POST" action="{{route('comments.update', $comments->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <h3 class="box-title">Comment Edit</h3>
