@@ -87,3 +87,4 @@ Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], funct
 });
 
 Route::get('/deal', 'DealController@index')->name('deal');
+Route::get('/start', 'DealController@getDeals')->name('get_deals');

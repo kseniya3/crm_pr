@@ -7,10 +7,11 @@
 @endsection
 
 @section('content')
-    <div class="col-xs-12">
+    <div class="col-xs-12" id='vue-id'>
 
         <div class="box">
             <div class="box-header">
+                
                     <a href="{{route('clients.client-add-form')}}" class="btn btn-outline-success">Add client</a>
                     @if(session()->get('success'))
                     <div class="alert alert-success mt-3">
