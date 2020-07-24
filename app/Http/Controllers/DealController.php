@@ -263,8 +263,10 @@ class DealController extends Controller
         $deal->clients()->detach();
         $deal->delete();
 
+        //return response(null, Response::HTTP_OK);
+
         return response()->json([
-            'status'=>'success',
+            'status'=>'OK',
             'msg'=> $id
             ]);
     }

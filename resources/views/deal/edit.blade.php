@@ -39,7 +39,7 @@
         <div class="form-group">
             <label for="post-title">deadline</label>
             <input type="text" name="deadline"
-                   value="{{$deal->deadline}}" class="form-control" id="post-title">
+                   value="{{$deal->deadline}}" class="form-control" style="width:500px" id="post-title">
         </div>
         <div class="form-group">
             <label>Cient</label>
