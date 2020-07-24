@@ -79,7 +79,10 @@ class DealController extends Controller
         ]);
 
         $comment = $request->get('comment_text');
-
+        $date_close;
+        if($request->get('status')!='open'){
+            $date_close=Carbon::now();
+        }
         if($comment != NULL)
         {
             $deal->comments()->create([
@@ -192,6 +195,10 @@ class DealController extends Controller
         $deal->deadline = $request->get('deadline');
         //$deal->first_name = $request->get('user_id');
         $deal->status = $request->get('status');
+        $date_close;
+        if($request->get('status')!='open'){
+            $date_close=Carbon::now();
+        }
         $deal->save();
 
         return redirect('/deals')->with('success', 'Contact updated!');
