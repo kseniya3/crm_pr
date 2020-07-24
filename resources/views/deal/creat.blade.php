@@ -29,10 +29,10 @@
             </div>
 
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label>close_date</label>
                 <input type="dateTime-local" name="close_date" class="form-control" value="{{old('close_date')}}">
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label>deal_descrip</label>
                 <input type="text" name="deal_descrip" class="form-control" value="{{old('deal_descrip')}}">
@@ -58,13 +58,13 @@
                         </div>
                     </div>
                 </fieldset>
-            <div class="form-group">
+           {{--  <div class="form-group">
                 <label for="post-title">status</label>
                 <select name="status" class="form-control" value="{{old('status')}}">
                     <option >open</option>
                     <option >closed</option>
                 </select>
-            </div>
+            </div> --}}
 
         </div>
                 <!-- /.box-body -->

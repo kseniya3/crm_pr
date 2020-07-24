@@ -26,11 +26,11 @@
                    value="{{$deal->deal_name}}" class="form-control" id="post-title">
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="post-title">close_date</label>
             <input type="text" name="close_date"
                    value="{{$deal->close_date}}" class="form-control" id="post-title">
-        </div>
+        </div> --}}
         <div class="form-group">
             <label for="post-title">deal_descrip</label>
             <input type="text" name="deal_descrip"
