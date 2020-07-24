@@ -75,9 +75,9 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
 });
 
 Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], function () {
-    Route::get('/', function () {
-        return view('User\user_add');
-    });
+    Route::get('/', function () 
+    {return view('User\user_add');
+    })->name('add_user');
     Route::post('/create','UserController@create')->name('create_user');
     Route::get('/show', 'UserController@Show')->name('show_user');
     Route::delete('/delete/{id}','UserController@Del')->name('delete_user');

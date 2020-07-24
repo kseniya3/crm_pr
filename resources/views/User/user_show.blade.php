@@ -3,12 +3,21 @@
     <div class="row">
         <div class="box">
             <div class="box-header">
+            
+                    <a href="{{route('users.add_user')}}" class="btn btn-outline-success">Add user</a>
+                    @if(session()->get('success'))
+                        <div class="alert alert-success mt-3">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
+
                 <h3 class="box-title">Condensed Full Width Table</h3>
                 <form action="{{route('users.find_user')}}" method="post">
                     @csrf
                     <input type="text" name="find" id="find" class="form-control">
                     <button type="submit" class="btn btn-primary">Найти</button>
                 </form>
+
                 <div class="box-body no-paddin">
                     <table class="box-body no-paddin">
                         <tbody>
@@ -35,9 +44,9 @@
                                     <form method="POST" action="{{route('users.delete_user',$item->id)}}">
                                         @csrf
                                         @method('DELETE')
-                                           <button type="submit" class="btn btn-danger">
-                                             <i class="fa fa-trash"></i>
-                                           </button>
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                     </form>
                                 </td>
                             </tr>
