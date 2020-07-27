@@ -2041,14 +2041,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  columns: ['№', 'Appelation', 'Start date', 'Finish date', 'Description', 'Deadline', 'Manager', 'Client', 'Comment', 'Status'],
   props: ['urldata'],
   data: function data() {
     return {
-      arr: this.urldata,
-      sortParam: ''
+      search: '',
+      arr: this.urldata.data
     };
   },
   mounted: function mounted() {
@@ -2063,6 +2063,14 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.status == 'OK') {
           window.location.reload();
         }
+      });
+    }
+  },
+  computed: {
+    search_list: function search_list() {
+      var val = this.search.toLowerCase();
+      return this.arr.filter(function (arf) {
+        return arf.deal_name.toLowerCase().indexOf(val) > -1 || arf.status.toLowerCase().indexOf(val) > -1 || arf.deal_descrip.toLowerCase().indexOf(val) > -1;
       });
     }
   }
@@ -6512,7 +6520,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.forbut[data-v-71d6f536]{\r\n    border:0;\n}\n.for_td[data-v-71d6f536]{\r\n    width:100px;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\n}\r\n", ""]);
+exports.push([module.i, "\n.for_a[data-v-71d6f536]{\r\n    color: black;\n}\n.for_a[data-v-71d6f536]:hover{\r\n    text-decoration: underline;\n}\n.add_but[data-v-71d6f536]{\r\n    background-color: rgba(166, 255, 243, 0.753);\r\n    border-color: rgba(12, 54, 49, 0.753);\r\n    color: black;\n}\n.add_but[data-v-71d6f536]:hover{\r\n    background-color: rgba(18, 84, 87, 0.753);\r\n    border-color: rgba(154, 235, 240, 0.753);\r\n    color: rgb(255, 255, 255);\r\n    transition: 1s;\n}\n.for_edit_but[data-v-71d6f536]{\r\n    background-color: rgb(217, 248, 188);\r\n    border-color: teal;\r\n    color: teal;\n}\n.for_edit_but[data-v-71d6f536]:hover{\r\n    background-color: rgb(15, 83, 52);\r\n    border-color: white;\r\n    color: white;\r\n    transition: 1s;\n}\n.for_del_but[data-v-71d6f536]{\r\n    background-color: rgb(255, 81, 81);\r\n    color: rgb(0, 0, 0);\r\n    border-color:black;\n}\n.for_del_but[data-v-71d6f536]:hover{\r\n    background-color: rgb(99, 13, 13);\r\n    color: white;\r\n    border-color:rgb(255, 255, 255);\r\n    transition: 1s;\n}\n.for_td[data-v-71d6f536]{\r\n    width:100px;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\n}\n.borderbut[data-v-71d6f536]{\r\n    border: 0;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -38408,15 +38416,76 @@ var render = function() {
   return _c("div", { staticClass: "box-body" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "form-control",
+            staticStyle: { width: "500px" },
+            attrs: {
+              type: "search",
+              placeholder: "Enter what you want to find..."
+            },
+            domProps: { value: _vm.search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
         _c(
           "table",
           { staticClass: "table table-bordered table-hover dataTable" },
           [
-            _vm._m(0),
+            _c("thead", [
+              _c("tr", { staticClass: "box-title", attrs: { role: "row" } }, [
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("№")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Appelation")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Start date")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Finish date")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Deadline")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Manager")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Client")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+                _vm._v(" "),
+                _c("th", { attrs: { colspan: "2", scope: "col" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-outline-success add_but",
+                      attrs: { href: "/deals/create/" }
+                    },
+                    [_vm._v("Add deal")]
+                  )
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.arr.data, function(url) {
+              _vm._l(_vm.search_list, function(url) {
                 return _c("tr", { key: url.id }, [
                   _c("td", [_vm._v(_vm._s(url.id))]),
                   _vm._v(" "),
@@ -38447,19 +38516,24 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("td", [
-                    _c("a", { attrs: { href: "/comments/" + url.id } }, [
-                      _vm._v("Comment\n                        ")
-                    ])
+                    _c(
+                      "a",
+                      {
+                        staticClass: "for_a",
+                        attrs: { href: "/comments/" + url.id }
+                      },
+                      [_vm._v("Comment\n                        ")]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(url.status))]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "table-buttons forbut" }, [
+                  _c("td", { staticClass: "table-buttons borderbut" }, [
                     _c("div", { staticClass: "input-group-btn" }, [
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-outline-danger",
+                          staticClass: "btn btn-outline-danger for_del_but",
                           on: {
                             click: function($event) {
                               return _vm.delete_deal(url.id)
@@ -38471,11 +38545,11 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "table-buttons forbut" }, [
+                  _c("td", { staticClass: "table-buttons borderbut" }, [
                     _c(
                       "a",
                       {
-                        staticClass: "btn btn-outline-success",
+                        staticClass: "btn btn-outline-success for_edit_but",
                         attrs: { href: "/deals/" + url.id + "/edit/" }
                       },
                       [_c("i", { staticClass: "fa fa-edit" })]
@@ -38491,38 +38565,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", { staticClass: "box-title", attrs: { role: "row" } }, [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("№")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Appelation")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Start date")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Finish date")])
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Deadline")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Manager")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Client")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Comment")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
