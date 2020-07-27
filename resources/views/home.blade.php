@@ -49,7 +49,7 @@
         </div>
         <!-- /.col -->
         <div class="col-md-6">
-          
+
         </div>
     </div>
 @endsection
