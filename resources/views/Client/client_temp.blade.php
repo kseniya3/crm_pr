@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-<div class="box box-primary" id="vue-id">
+<div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title">Client</h3>
   </div>
@@ -61,8 +61,8 @@
             <div class="col-sm">
               <label>Deal</label>
               <div class="form-group" id="prokrutka">
-                
-                
+
+
                     @foreach($deals as $deal)
                         <input type="checkbox" name="deals[]" value="{{$deal->id}}">
                         <label class="">{{$deal->deal_name}}</label>
@@ -86,14 +86,12 @@
             <div class="box-footer">
               <button type="submit" class="btn btn-success">Submit</button>
             </div>
+        </div>
     </form>
 
     {{-- <create_client-vue :urldata="{{json_encode($url_data)}}"></create_client-vue> --}}
 </div>
 @endsection
-@push('js')
-    <script src="{{asset('js/app.js')}}"></script>
-@endpush
 <style>
   #prokrutka {
   height: 200px; /* высота нашего блока */
