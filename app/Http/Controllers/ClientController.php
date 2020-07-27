@@ -18,6 +18,7 @@ class ClientController extends Controller
 
     public function OpenCreate()
     {
+        
         return view('Client.client_temp',
             ['deals'=> Deal::get()]
         );
@@ -124,13 +125,13 @@ class ClientController extends Controller
 
     public function create(Request $req)
     {
-        /* dd($req->all()); */
-
-        $validate=self::validator($req->all());
-        if($validate->fails()){
-            /* dd($validate->errors()); */
-            return redirect()->back()->withErrors($validate)->withInput();
-        }
+        try{
+            $validate=self::validator($req->all());
+            if($validate->fails()){
+                /* dd($validate->errors()); */
+                
+                return redirect()->back()->withErrors($validate)->withInput();
+            }
 
         $client=Client::create([
             'second_name' =>$req['second_name'] ,
@@ -142,11 +143,23 @@ class ClientController extends Controller
             'company_name' => $req['company_name'],
             'user_id' => $req->user()->id,
         ]);
-        if($req->input('deals')):
-            $client->deals()->attach($req->input('deals'));
-        endif;
+            if($req->input('deals')){
+                $client->deals()->attach($req->input('deals'));
+            }
+            
+            
             $client->save();
-        return redirect()->route('clients.show_clients')->with('success','Сообщение было добавленно');
+
+           
+            return redirect()->route('clients.show_clients')->with('success','Сообщение было добавленно');
+            
+        }
+        catch(\Exeption $e)
+        {
+            return response()->json($e->getMessage());
+        }
+        
+        
 
 
     }

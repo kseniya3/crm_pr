@@ -273,4 +273,14 @@ class DealController extends Controller
             'msg'=> $id
             ]);
     }
+
+
+    public function getDeals()
+    {
+        $deal=Deal::all();
+        
+        $url_data=((array)$deal);
+        /* dd($url_data); */
+        return view('Client.client_temp',['url_data'=>$url_data]);
+    }
 }

@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-<div class="box box-primary">
+<div class="box box-primary" id="vue-id">
   <div class="box-header with-border">
     <h3 class="box-title">Client</h3>
   </div>
@@ -71,5 +71,10 @@
               <button type="submit" class="btn btn-success">Submit</button>
             </div>
     </form>
+
+    {{-- <create_client-vue :urldata="{{json_encode($url_data)}}"></create_client-vue> --}}
 </div>
 @endsection
+@push('js')
+    <script src="{{asset('js/app.js')}}"></script>
+@endpush

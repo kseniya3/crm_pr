@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('deal-comp', require('./components/dealComponent.vue').default);
 Vue.component('comment-vue', require('./components/CommentComponent.vue').default);
+Vue.component('create_client-vue', require('./components/CreateClientComponent.vue').default);
 
 const v = new Vue({
     el: '#vue-id',
