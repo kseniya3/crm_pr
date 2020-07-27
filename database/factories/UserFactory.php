@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class,function (Faker $faker) {
+/* $factory->define(User::class,function (Faker $faker) {
     $array=['admin','manager'];
     return [
         'name' => Str::random(10),
@@ -27,18 +27,18 @@ $factory->define(User::class,function (Faker $faker) {
         'role' => Arr::random($array),
         'remember_token' => Str::random(10),
     ];
-});
-/* $factory->define(User::class,function (Faker $faker) {
+}); */
+$factory->define(User::class,function (Faker $faker) {
     
     return [
         'name' => 'admin',
-        'email' => "fwt_ilia@mail.ru",
+        'email' => "fwt_ilya@mail.ru",
         'email_verified_at' => now(),
         'password' => bcrypt('12345678'), // password
         'role' => 'admin',
         'remember_token' => Str::random(10),
     ];
-}); */
+});
 
 /* $factory->defineAs(User::class, 'admin',function(Faker $faker){
         return [
