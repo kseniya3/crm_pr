@@ -231,28 +231,14 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
+
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
 
-        ['header' => 'account_settings'],
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/profile',
-            'icon' => 'fas fa-fw fa-cog',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+
         [
             'header' => 'Tables',
         ],

@@ -10,7 +10,6 @@
     <div class="col-xs-12" id='vue-id'>
         <div class="box">
             <div class="box-header">
-                <a href="{{route('deals.create')}}" class="btn btn-outline-success">Add deal</a>
                 @if(session()->get('success'))
                     <div class="alert alert-success mt-3">
                         {{ session()->get('success') }}
@@ -18,7 +17,9 @@
                 @endif
             </div>
                 <deal-comp :urldata="{{json_encode($items)}}"></deal-comp>
-                
+        </div>
+        <div class="nav justify-content-center">
+            {{$items->links()}}
         </div>
     </div>
 @endsection
