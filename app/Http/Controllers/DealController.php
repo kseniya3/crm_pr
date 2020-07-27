@@ -274,8 +274,8 @@ class DealController extends Controller
     {
         $deal=Deal::all();
         
-        $data=((array)$deal);
-        dd($data);
-        return view('Client.client_temp',['url_data'=>$data]);
+        $url_data=((array)$deal);
+        /* dd($url_data); */
+        return view('Client.client_temp',['url_data'=>$url_data]);
     }
 }
