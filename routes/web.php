@@ -76,4 +76,3 @@ Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], funct
     Route::post('/update/{id}','UserController@updateUser')->name('update_user');
     Route::post('/find', 'UserController@FindUser')->name('find_user');
 });
-

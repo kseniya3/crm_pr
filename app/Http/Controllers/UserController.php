@@ -39,7 +39,7 @@ class UserController extends Controller
 
     protected function Show()
     {
-        
+
         $items = User::all();
         return view('User.user_show', ['items'=>$items]);
     }
@@ -81,8 +81,8 @@ class UserController extends Controller
             $com->user_id=null;
             $com->save();
         }
-        
-        
+
+
         $user->delete();
         return redirect()->route('users.show_user')->with('success','Сообщение было удалено');
     }
@@ -115,7 +115,7 @@ class UserController extends Controller
         }
 
         $user=new User;
-        
+
             $user->name = $req->input('name');
             $user->email = $req->input('email');
             $user->password = Hash::make($req->input('password'));

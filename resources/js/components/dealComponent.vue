@@ -1,12 +1,11 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
+    <div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        
+                        <input type="search" class="form-control" style="width:500px" placeholder="Enter what you want to find..." v-model="search">
                     </div>
                 </div>
             </div>
