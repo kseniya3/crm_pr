@@ -1903,6 +1903,7 @@ module.exports = {
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CommentComponent.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************/
+<<<<<<< HEAD
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1939,6 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateClientComponent.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************/
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1963,6 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -2000,6 +2004,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+=======
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 //
 //
 //
@@ -2012,6 +2035,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2034,6 +2058,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 //
 //
 //
@@ -2041,6 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
@@ -2048,6 +2075,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2073,8 +2102,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 //
 //
 //
@@ -38391,6 +38423,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CommentComponent.vue?vue&type=template&id=d6b6866e&scoped=true& ***!
   \*******************************************************************************************************************************************************************************************************************************/
+<<<<<<< HEAD
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38440,6 +38473,8 @@ render._withStripped = true
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateClientComponent.vue?vue&type=template&id=a82f7f0a& ***!
   \************************************************************************************************************************************************************************************************************************/
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50961,7 +50996,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('deal-comp', __webpack_require__(/*! ./components/dealComponent.vue */ "./resources/js/components/dealComponent.vue")["default"]);
 Vue.component('comment-vue', __webpack_require__(/*! ./components/CommentComponent.vue */ "./resources/js/components/CommentComponent.vue")["default"]);
+<<<<<<< HEAD
 Vue.component('create_client-vue', __webpack_require__(/*! ./components/CreateClientComponent.vue */ "./resources/js/components/CreateClientComponent.vue")["default"]);
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 var v = new Vue({
   el: '#vue-id'
 });
@@ -51082,6 +51120,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./resources/js/components/CreateClientComponent.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/CreateClientComponent.vue ***!
@@ -51151,6 +51190,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+=======
+>>>>>>> 6174524bf73ec7ca81a1ae792ff9c4a7dc8a6d3b
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -51325,8 +51366,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\OpenServer\domains\crm_pr\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\OpenServer\domains\crm_pr\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OpenServer\domains\crm\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\crm\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

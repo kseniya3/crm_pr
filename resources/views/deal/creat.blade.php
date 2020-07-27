@@ -5,7 +5,7 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Quick Example</h3>
+        <h3 class="box-title">Create Deal</h3>
     </div>
 
     @if ($errors->any())
@@ -67,6 +67,9 @@
                         </div>
                     </div>
                 </fieldset>
+<<<<<<< HEAD
+            {{--  <div class="form-group">
+=======
             </div>
         </div>
     </div>
@@ -75,10 +78,11 @@
             
                 
            {{--  <div class="form-group">
+>>>>>>> 49f0148afb2873768cb34da847a37572b4aa8b27
                 <label for="post-title">status</label>
                 <select name="status" class="form-control" value="{{old('status')}}">
-                    <option >open</option>
-                    <option >closed</option>
+                    <option >Open</option>
+                    <option >Closed</option>
                 </select>
             </div> --}}
 

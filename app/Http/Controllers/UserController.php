@@ -49,7 +49,7 @@ class UserController extends Controller
         $items = User::all();
         $findznach=$req->input('find');
         if($req->input('find')==""){
-            return view('Client.client_show', ['items'=>$items]);
+            return view('User.user_show', ['items'=>$items]);
         }
         $columns = [
             'name', 'email', 'password', 'role',
