@@ -77,8 +77,4 @@ Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], funct
     Route::post('/find', 'UserController@FindUser')->name('find_user');
 });
 
-<<<<<<< HEAD
-Route::get('/deal', 'DealController@index')->name('deal');
-Route::get('/start', 'DealController@getDeals')->name('get_deals');
-=======
->>>>>>> f7816c75815951255812744b8d8fb776f1b9b2fd
+

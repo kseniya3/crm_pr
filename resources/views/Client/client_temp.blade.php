@@ -58,12 +58,14 @@
               <label for="company_name">company name</label>
               <input type="text" name="company_name" id="company_name"class="form-control" value="{{old('company_name')}}">
             </div>
-
-              <div class="form-group">
-                <label>Deal</label>
+            <label>Deal</label>
+              <div class="form-group" id="prokrutka">
+                
+                
                     @foreach($deals as $deal)
                         <input type="checkbox" name="deals[]" value="{{$deal->id}}">
                         <label class="">{{$deal->deal_name}}</label>
+                        <br>
                     @endforeach
               </div>
             </div>
@@ -78,3 +80,13 @@
 @push('js')
     <script src="{{asset('js/app.js')}}"></script>
 @endpush
+<style>
+  #prokrutka {
+  height: 200px; /* высота нашего блока */
+  width: 200px; /* ширина нашего блока */
+  background: #fff; /* цвет фона, белый */
+  border: 1px solid #C1C1C1; /* размер и цвет границы блока */
+  overflow-x: scroll; /* прокрутка по горизонтали */
+  overflow-y: scroll; /* прокрутка по вертикали */
+  }
+  </style>
