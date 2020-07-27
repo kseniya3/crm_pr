@@ -1,32 +1,57 @@
 @extends('adminlte::page')
 
 @section('content')
-    <!-- <script src="{{asset('js/app.js')}}"></script> -->
-<div id="vue-id" class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    <h3 class="card-title">Deal Table</h3>
 
-                <div class="card-body">
-                    @if (session('status'))]
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <a href="{{route('deals.index')}}">Deal</a>
-                    <a href="{{route('clients.show_clients')}}">Client</a>
-                    <a href="{{route('users.show_user')}}">User</a>
-                        
-                    {{ __('You are logged in!') }}
-                    <div><example-component></example-component></div>
+                    <div class="card-tools">
+                        <ul class="pagination pagination-sm float-right">
+                            {{$deals->links()}}
+                        </ul>
+                    </div>
                 </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Appelation</th>
+                            <th style="width: 40px">Deadline</th>
+                            <th>Client</th>
+                            <th style="width: 40px">Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($deals as $deal)
+                        <tr>
+                            <td>{{ $deal->deal_name }}</td>
+                            <td>{{ $deal->deadline }}</td>
+                            <td>{{ $deal->clients()->pluck('second_name')->implode(', ')}}</td>
+                            @if($deal->status == 'open')
+                                <td><span class="badge bg-success">{{ $deal->status }}</span></td>
+                            @else
+                                <td><span class="badge bg-danger">{{ $deal->status }}</span></td>
+                            @endif
+                            <td>
+                                <a class="btn btn-primary btn-block" href="{{route('comments.show', $deal->id)}}" role="button">Show</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
             </div>
         </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+
+        </div>
     </div>
-</div>
 @endsection
-@push('js')
-    <script src="{{asset('js/app.js')}}"></script>
-@endpush
+
+

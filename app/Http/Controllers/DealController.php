@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ClientDealJob;
+use App\Mail\EmailClientHello;
 use App\Models\Client;
 use App\Models\Comment;
 use App\Traits\CommentFileDeleteTrait;
@@ -10,7 +11,9 @@ use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
 
 
 class DealController extends Controller
@@ -26,7 +29,7 @@ class DealController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
+    {
         return view('deal.index',
         ['items'=>Deal::with('clients','user')->paginate(6)]
         );
@@ -71,7 +74,7 @@ class DealController extends Controller
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
-        $date_close;
+
         if($request->get('status')!='open'){
             $date_close=Carbon::now();
         }
@@ -86,7 +89,7 @@ class DealController extends Controller
         ]);
 
         $comment = $request->get('comment_text');
-        
+
         if($comment != NULL)
         {
             $deal->comments()->create([
@@ -100,12 +103,13 @@ class DealController extends Controller
             $deal->clients()->attach($request->input('clients'));
         endif;
 
-        $cl = Client::where('id', $request->input('clients'))->firstOrFail();
+        foreach ($deal->clients as $client)
+        {
+            Mail::to($client->contacts_email)->send(new EmailClientHello($client, $deal));
+        }
 
         if($deal)
         {
-            ClientDealJob::dispatch($cl, $deal)->delay(20);
-
             $deal->save();
             return redirect('/deals')->with(['success' => 'Успешно сохранено']);
         }else{
@@ -203,10 +207,10 @@ class DealController extends Controller
 
 
         $deal->clients()->detach();
-        if($request->input('clients')):
+        if($request->input('clients'))
+        {
             $deal->clients()->attach($request->input('clients'));
-        endif;
-
+        }
 
         if($request->get('status')!='open'){
             $date_close=Carbon::now();
@@ -221,16 +225,17 @@ class DealController extends Controller
         $deal->deadline = $request->get('deadline');
         //$deal->first_name = $request->get('user_id');
         $deal->status = $request->get('status');
-        
+
 
         $deal->save();
 
-        $cl = Client::where('id', $request->input('clients'))->firstOrFail();
+        foreach ($deal->clients as $client)
+        {
+            Mail::to($client->contacts_email)->send(new EmailClientHello($client, $deal));
+        }
 
         if($deal)
         {
-            ClientDealJob::dispatch($cl, $deal)->delay(20);
-
             $deal->save();
             return redirect('/deals')->with(['success' => 'Успешно сохранено']);
         }else{
@@ -264,7 +269,7 @@ class DealController extends Controller
         $deal->delete();
 
         return response()->json([
-            'status'=>'success',
+            'status'=>'OK',
             'msg'=> $id
             ]);
     }

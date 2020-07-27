@@ -35,18 +35,15 @@ class CommentController extends Controller
             'deal_id' => $request->get('deal_id')
         ]);
 
-
         if($request->get('filename') != NULL)
         {
             $path = $request->file('file_path')->store('uploads', 'public');
-
             $comment->commentsFile()->create([
                 'filename' => $request->get('filename'),
                 'file_path' => $path,
                 'comment_id' => $comment->id
             ]);
         }
-
         $comment->save();
 
         return redirect()->back();
@@ -63,8 +60,6 @@ class CommentController extends Controller
         $deal = Deal::find($id);
         $comments = $deal->comments()->paginate(5);
 
-        // dd( $deal);
-
         return view('Comment.index',
             ['deal'=>$deal,
                 'comments'=>$comments]
@@ -80,13 +75,11 @@ class CommentController extends Controller
     public function edit($id)
     {
         $comment = Comment::find($id);
-        $deal = Deal::find($comment->deal_id);
-        $commentFile = $comment->commentsFile;
 
         return view('Comment.edit',
-            ['deal'=>$deal],
-             ['comments'=>$comment,
-                 'commentFiles' => $commentFile]
+            ['deal' => $comment->deal],
+             ['comments' => $comment,
+              'commentFiles' => $comment->commentsFile]
         );
     }
 
@@ -99,7 +92,6 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $comment = Comment::find($id);
         $comment->comment_text = $request->get('comment_text');
         $comment->user_id = $request->get('user_id');
@@ -118,8 +110,7 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::find($id);
-        $files = $comment->commentsFile;
-        foreach ($files as $file)
+        foreach ($comment->commentsFile as $file)
         {
             CommentFileDeleteTrait::deleteFile($file->id);
         }

@@ -23,6 +23,7 @@ class Email extends Mailable
     {
         $this->client = $client;
         $this->deal = $deal;
+
     }
 
     /**
@@ -32,11 +33,11 @@ class Email extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.emails',
+        return $this->view('mails.emailClientDeals',
             ['client' => $this->client],
             ['deal' => $this->deal]
-        );
-
+        )->attach("public/word/DealFile/{$this->client->second_name}.docx");
     }
+
 
 }

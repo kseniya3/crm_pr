@@ -23,9 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+//Route::get('/home', function() {
+//    return view('home');
+//})->name('home')->middleware('auth');
 
 Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/', 'DealController@index')->name('index');
@@ -37,10 +37,6 @@ Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::delete('/{id}', 'DealController@destroy')->name('destroy');
     Route::post('/find', 'DealController@FindDeal')->name('find_deal');
 });
-//
-//Route::group(['prefix'=>'/reports','as'=>'reports.'],function(){
-//    Route::get('/{id}', 'ReportController@show')->name('show');
-//});
 
 Route::group(['prefix'=>'/comments','as'=>'comments.'],function(){
     Route::get('/{id}', 'CommentController@show')->name('show');
@@ -49,17 +45,13 @@ Route::group(['prefix'=>'/comments','as'=>'comments.'],function(){
     Route::put('/{id}','CommentController@update')->name('update');
     Route::patch('/{id}','CommentController@update');
     Route::delete('/{id}', 'CommentController@destroy')->name('destroy');
-
-
     Route::post('/file/store', 'CommentController@storeFile')->name('storeFile');
     Route::put('/file/{id}','CommentController@updateFile')->name('updateFile');
     Route::patch('/file/{id}','CommentController@updateFile');
+
     Route::delete('/file/{id}', 'CommentFilsController@destroy')->name('destroyFile');
 });
 
-//Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
-
-// Route::get('/home/clients', 'ClientController@index')->name('client-add-form');
 Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
     Route::post('/create', 'ClientController@create')->name('create_client');
     Route::get('/show', 'ClientController@Show')->name('show_clients');
@@ -71,13 +63,12 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
 
     Route::get('/report/{id}', 'ReportController@show')->name('show_report');
     Route::get('/report/deal/{id}', 'ReportController@generator')->name('generator');
-
 });
 
 Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], function () {
-    Route::get('/', function () {
-        return view('User\user_add');
-    });
+    Route::get('/', function ()
+    {return view('User\user_add');
+    })->name('add_user');
     Route::post('/create','UserController@create')->name('create_user');
     Route::get('/show', 'UserController@Show')->name('show_user');
     Route::delete('/delete/{id}','UserController@Del')->name('delete_user');
@@ -86,5 +77,8 @@ Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], funct
     Route::post('/find', 'UserController@FindUser')->name('find_user');
 });
 
+<<<<<<< HEAD
 Route::get('/deal', 'DealController@index')->name('deal');
 Route::get('/start', 'DealController@getDeals')->name('get_deals');
+=======
+>>>>>>> f7816c75815951255812744b8d8fb776f1b9b2fd

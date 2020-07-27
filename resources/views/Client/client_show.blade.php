@@ -68,7 +68,7 @@
                                             </form>
                                         </li>
                                         <li>
-                                            <a href="{{route('clients.update_client_str',$item->id)}}" class="dropdown-item">Show</a>
+                                            <a href="{{route('clients.update_client_str',$item->id)}}" class="dropdown-item">Edit</a>
                                         </li>
                                         <li>
                                             <a href="{{route('clients.show_report',$item->id)}}" class="dropdown-item">Report</a>

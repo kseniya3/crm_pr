@@ -5,6 +5,9 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="box">
+                    <div>
+                        <h1>Deals and Comment</h1>
+                    </div>
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
                         <div class="jumbotron text-center">
@@ -26,32 +29,26 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
                 <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Add Comment</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
                     <form role="form" action="{{ route('comments.store') }}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                         <input type="hidden" name="deal_id" value="{{$deal->id}}">
                         {{ csrf_field() }}
                         <fieldset class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Comment:</label>
-                                <div class="col-sm-12">
+                                <div class="col-sm-14">
+                                    <label>Comment:</label>
                                     <textarea name="comment_text" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group" style="display:flex;">
-                                <label class="col-sm-2 control-label" for="exampleInputFile">File name:</label>
-                                <input type="text" name="filename" class="form-control" value="{{old('filename')}}">
+                            <label style="width: 15%"for="exampleInputFile">File name:</label>
+                            <div class="form-group col-md-14" style="display: flex">
+                                <input style="width: 60%" type="text" name="filename" class="form-control" value="{{old('filename')}}">
                                 <input type="file" name="file_path" id="filename" id="exampleInputFile">
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-primary" type="submit">Add</button>
+                                <div class="col-sm-14 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">Add Comment</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -63,8 +60,8 @@
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body no-padding">
-                        <table class="table table-striped">
-                            <tbody>
+                        <table class="table table-hover">
+                            <thead>
                             <tr>
                                 <th style="width: 10%">Data</th>
                                 <th style="width: 10%">User</th>
@@ -72,6 +69,8 @@
                                 <th style="width: 70%">File</th>
                                 <th></th>
                             </tr>
+                            </thead>
+                            <tbody>
                             @foreach($comments as $comment)
                                 <tr>
                                     <td>{{$comment->created_at}}</td>
@@ -100,13 +99,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            </tbody></table>
+                            </tbody>
+                            <div class="nav justify-content-center">
+                                {{$comments->links()}}
+                            </div>
+                        </table>
                     </div>
-                </div>
-
-                <!-- /.box -->
-                <div class="box">
-                    {{$comments->links()}}
                 </div>
             </div>
             <!-- /.col -->
