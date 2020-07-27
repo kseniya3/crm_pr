@@ -59,7 +59,7 @@
                     <option >closed</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-success">Отредактировать</button>
+        <button type="submit" class="btn btn-success">Edit</button>
     </form>
 </div>
 </div>

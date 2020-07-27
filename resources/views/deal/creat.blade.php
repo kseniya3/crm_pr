@@ -67,9 +67,6 @@
                         </div>
                     </div>
                 </fieldset>
-<<<<<<< HEAD
-            {{--  <div class="form-group">
-=======
             </div>
         </div>
     </div>
@@ -78,19 +75,18 @@
             
                 
            {{--  <div class="form-group">
->>>>>>> 49f0148afb2873768cb34da847a37572b4aa8b27
                 <label for="post-title">status</label>
                 <select name="status" class="form-control" value="{{old('status')}}">
                     <option >Open</option>
                     <option >Closed</option>
                 </select>
             </div> --}}
-
-        </div>
-                <!-- /.box-body -->
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+
+        </div>
+                <!-- /.box-body -->
     </form>
 
 </div>
