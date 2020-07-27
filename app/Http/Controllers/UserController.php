@@ -19,8 +19,8 @@ class UserController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data,[
-            'name' => ['required', 'string', 'max:30','alpha','unique:user'],
-            'email' => ['required', 'string', 'email', 'max:30', 'unique:user'],
+            'name' => ['required', 'string', 'max:30','alpha','unique:users'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'string', 'max:15'],
 
@@ -49,7 +49,7 @@ class UserController extends Controller
         $items = User::all();
         $findznach=$req->input('find');
         if($req->input('find')==""){
-            return view('Client.client_show', ['items'=>$items]);
+            return view('User.user_show', ['items'=>$items]);
         }
         $columns = [
             'name', 'email', 'password', 'role',

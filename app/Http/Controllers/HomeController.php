@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $deal = Deal::where('user_id', Auth::id())->paginate(6);
+        $deal = Deal::where('user_id', Auth::id())->paginate(4);
         $clients = Client::where('user_id', Auth::id())->paginate(1);
 
         return view('home',

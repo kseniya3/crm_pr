@@ -5,7 +5,7 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Quick Example</h3>
+        <h3 class="box-title">Create Deal</h3>
     </div>
 
     @if ($errors->any())
@@ -30,19 +30,19 @@
 
 
             {{-- <div class="form-group">
-                <label>close_date</label>
+                <label>Close date</label>
                 <input type="dateTime-local" name="close_date" class="form-control" value="{{old('close_date')}}">
             </div> --}}
             <div class="form-group">
-                <label>deal_descrip</label>
+                <label>Description</label>
                 <input type="text" name="deal_descrip" class="form-control" value="{{old('deal_descrip')}}">
             </div>
             <div class="form-group">
-                <label>deadline</label>
+                <label>Deadline</label>
                 <input type="dateTime-local" name="deadline" class="form-control" value="{{old('deadline')}}">
             </div>
             <div class="form-group">
-                <label>Cient</label>
+                <label>Client</label>
                     @foreach($clients as $client)
                         <input type="checkbox" name="clients[]" value="{{$client->id}}">
                         <label class="">{{$client->second_name}}</label>
@@ -58,11 +58,11 @@
                         </div>
                     </div>
                 </fieldset>
-           {{--  <div class="form-group">
+            {{--  <div class="form-group">
                 <label for="post-title">status</label>
                 <select name="status" class="form-control" value="{{old('status')}}">
-                    <option >open</option>
-                    <option >closed</option>
+                    <option >Open</option>
+                    <option >Closed</option>
                 </select>
             </div> --}}
 

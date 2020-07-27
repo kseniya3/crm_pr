@@ -22,6 +22,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('deal-comp', require('./components/dealComponent.vue').default);
 Vue.component('comment-vue', require('./components/CommentComponent.vue').default);
 
+
 const v = new Vue({
     el: '#vue-id',
 });

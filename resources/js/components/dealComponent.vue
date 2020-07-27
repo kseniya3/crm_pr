@@ -4,9 +4,10 @@
                 <div class="col-sm-12">
                     <div class="input-group">
                         
-                        <input type="search" class="form-control" style="width:500px" placeholder="Enter what you want to find..." v-model="search">
+                        <input type="search" class="form-control" placeholder="Enter what you want to find..." v-model="search">
                     </div>
-                    <table class="table table-bordered table-hover dataTable">
+                    <div class="card">
+                    <table class="table">
                         <thead>
                             <tr role="row" class="box-title">
                                 <th scope="col">№</th>
@@ -53,6 +54,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

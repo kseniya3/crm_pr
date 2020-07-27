@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Редактирование пользоавателей</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
-<body>
+@extends('adminlte::page')
+
+@section('content')
+
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Edit user</h3>
+    </div>
+
     <form action="{{route('users.update_user',$data->id)}}" method="post">
         @csrf
         @if (count($errors) > 0)
@@ -19,18 +19,19 @@
           </ul>
         </div>
       @endif
-        <div class="form-group">
-            <label for="name" >login</label>
+        <div class="form-group" style="width:450px;">
+            <label for="name" >Login</label>
             <input type="text" name="name" id="name" class="form-control" value="{{$data->name}}">
-            <label for="password" >password</label>
+            <label for="password" >Password</label>
             <input type="text" name="password" id="password" class="form-control" >
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="text" name="email" id="email" class="form-control" value="{{$data->email}}">
-            <label for="role">role</label>
+            <label for="role">Role</label>
             <input type="text" name="role" id="role" class="form-control" value="{{$data->role}}">
             
+        </div>
+        <div>
             <button type="submit" class="btn btn-success">отправить</button>
         </div>
     </form>
-</body>
-</html>
+@endsection

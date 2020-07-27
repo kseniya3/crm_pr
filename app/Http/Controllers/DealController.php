@@ -31,7 +31,7 @@ class DealController extends Controller
     public function index()
     {
         return view('deal.index',
-        ['items'=>Deal::with('clients','user')->paginate(6)]
+        ['items'=>Deal::with('clients','user')->paginate(4)]
         );
     }
     /**
