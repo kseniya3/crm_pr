@@ -11,8 +11,6 @@
 
         <div class="box">
             <div class="box-header">
-                
-                    <a href="{{route('clients.client-add-form')}}" class="btn btn-outline-success">Add client</a>
                     @if(session()->get('success'))
                     <div class="alert alert-success mt-3">
                         {{ session()->get('success') }}
@@ -37,7 +35,9 @@
                             <th scope="col">Description</th>
                             <th scope="col">Company</th>
                             <th scope="col">Deal</th>
-                            <th></th>
+                            <th>
+                                <a href="{{route('clients.client-add-form')}}" class="btn btn-success btn-block">Add client</a>
+                            </th>
                         </tr>
                         </thead>
                         <div class="box-body no-paddin">
