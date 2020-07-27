@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\Deal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $deal = Deal::where('user_id', Auth::id())->paginate(6);
+        $clients = Client::where('user_id', Auth::id())->paginate(1);
+
+        return view('home',
+            ['deals'=>$deal],
+            ['clients'=>$clients]
+        );
     }
 }

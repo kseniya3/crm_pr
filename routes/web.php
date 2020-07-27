@@ -23,9 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+//Route::get('/home', function() {
+//    return view('home');
+//})->name('home')->middleware('auth');
 
 Route::group(['prefix'=>'/deals','as'=>'deals.'],function(){
     Route::get('/', 'DealController@index')->name('index');
@@ -66,7 +66,7 @@ Route::group(['prefix' => '/clients','as'=>'clients.'], function () {
 });
 
 Route::group(['prefix' => '/users','as'=>'users.','middleware'=>['role']], function () {
-    Route::get('/', function () 
+    Route::get('/', function ()
     {return view('User\user_add');
     })->name('add_user');
     Route::post('/create','UserController@create')->name('create_user');

@@ -13,6 +13,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
 
 
 class DealController extends Controller
@@ -73,7 +74,7 @@ class DealController extends Controller
             /* dd($validate->errors()); */
             return redirect()->back()->withErrors($validate)->withInput();
         }
-        $date_close;
+
         if($request->get('status')!='open'){
             $date_close=Carbon::now();
         }
@@ -88,7 +89,7 @@ class DealController extends Controller
         ]);
 
         $comment = $request->get('comment_text');
-        
+
         if($comment != NULL)
         {
             $deal->comments()->create([
@@ -206,10 +207,10 @@ class DealController extends Controller
 
 
         $deal->clients()->detach();
-        if($request->input('clients')):
+        if($request->input('clients'))
+        {
             $deal->clients()->attach($request->input('clients'));
-        endif;
-
+        }
 
         if($request->get('status')!='open'){
             $date_close=Carbon::now();
@@ -224,7 +225,7 @@ class DealController extends Controller
         $deal->deadline = $request->get('deadline');
         //$deal->first_name = $request->get('user_id');
         $deal->status = $request->get('status');
-        
+
 
         $deal->save();
 
